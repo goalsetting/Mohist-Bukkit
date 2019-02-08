@@ -1,11 +1,13 @@
 package org.bukkit.event.server;
 
-import java.util.List;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Called when a {@link CommandSender} of any description (ie: player or
@@ -21,6 +23,13 @@ public class TabCompleteEvent extends Event implements Cancellable {
     private boolean cancelled;
 
     public TabCompleteEvent(CommandSender sender, String buffer, List<String> completions) {
+        // Paper start
+        this(sender, buffer, completions, sender instanceof org.bukkit.command.ConsoleCommandSender || buffer.startsWith("/"), null);
+    }
+    public TabCompleteEvent(CommandSender sender, String buffer, List<String> completions, boolean isCommand, org.bukkit.Location location) {
+        this.isCommand = isCommand;
+        this.loc = location;
+        // Paper end
         Validate.notNull(sender, "sender");
         Validate.notNull(buffer, "buffer");
         Validate.notNull(completions, "completions");
@@ -58,6 +67,24 @@ public class TabCompleteEvent extends Event implements Cancellable {
         return completions;
     }
 
+    // Paper start
+    private final boolean isCommand;
+    private final org.bukkit.Location loc;
+    /**
+      * @return True if it is a command being tab completed, false if it is a chat message.
+      */
+    public boolean isCommand() {
+        return isCommand;
+    }
+
+    /**
+     * @return The position looked at by the sender, or null if none
+     */
+    public org.bukkit.Location getLocation() {
+        return loc;
+    }
+    // Paper end
+
     /**
      * Set the completions offered, overriding any already set.
      *
@@ -65,7 +92,7 @@ public class TabCompleteEvent extends Event implements Cancellable {
      */
     public void setCompletions(List<String> completions) {
         Validate.notNull(completions);
-        this.completions = completions;
+        this.completions = new ArrayList<>(completions); // Paper
     }
 
     @Override

@@ -1,5 +1,42 @@
 package org.bukkit;
 
+import com.google.common.collect.ImmutableList;
+import org.bukkit.Warning.WarningState;
+import org.bukkit.advancement.Advancement;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
+import org.bukkit.command.CommandException;
+import org.bukkit.command.CommandMap;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.server.ServerListPingEvent;
+import org.bukkit.generator.ChunkGenerator;
+import org.bukkit.help.HelpMap;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemFactory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Merchant;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.map.MapView;
+import org.bukkit.permissions.Permissible;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.ServicesManager;
+import org.bukkit.plugin.messaging.Messenger;
+import org.bukkit.plugin.messaging.PluginMessageRecipient;
+import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.util.CachedServerIcon;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
@@ -11,42 +48,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
-
-import org.bukkit.Warning.WarningState;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
-import org.bukkit.command.CommandException;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.server.ServerListPingEvent;
-import org.bukkit.help.HelpMap;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Merchant;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.map.MapView;
-import org.bukkit.permissions.Permissible;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.ServicesManager;
-import org.bukkit.plugin.messaging.Messenger;
-import org.bukkit.plugin.messaging.PluginMessageRecipient;
-import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.bukkit.util.CachedServerIcon;
-
-import com.google.common.collect.ImmutableList;
-import org.bukkit.advancement.Advancement;
-import org.bukkit.generator.ChunkGenerator;
-
-import org.bukkit.inventory.ItemFactory;
-import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * Represents a server implementation.
@@ -229,6 +230,26 @@ public interface Server extends PluginMessageRecipient {
      */
     public int broadcastMessage(String message);
 
+    // Paper start
+    /**
+      * Sends the component to all online players.
+      *
+      * @param component the component to send
+      */
+    public default void broadcast(net.md_5.bungee.api.chat.BaseComponent component) {
+        spigot().broadcast(component);
+    }
+
+    /**
+     * Sends an array of components as a single message to all online players.
+     *
+     * @param components the components to send
+     */
+    public default void broadcast(net.md_5.bungee.api.chat.BaseComponent... components) {
+        spigot().broadcast(components);
+    }
+    // Paper end
+    
     /**
      * Gets the name of the update folder. The update folder is used to safely
      * update plugins at the right moment on a plugin load.
@@ -342,6 +363,9 @@ public interface Server extends PluginMessageRecipient {
      * @return a player object if one was found, null otherwise
      */
     public Player getPlayer(UUID id);
+
+    @Nullable
+    public UUID getPlayerUniqueId(String playerName);
 
     /**
      * Gets the plugin manager for interfacing with plugins.
@@ -470,7 +494,7 @@ public interface Server extends PluginMessageRecipient {
      * Dispatches a command on this server, and executes it if found.
      *
      * @param sender the apparent sender of the command
-     * @param commandLine the command + arguments. Example: <code>test abc
+     * @param commandLine the command arguments. Example: <code>test abc
      *     123</code>
      * @return returns false if no target is found
      * @throws CommandException thrown when the executor for the given command
@@ -928,6 +952,22 @@ public interface Server extends PluginMessageRecipient {
      */
     Entity getEntity(UUID uuid);
 
+    // Paper start
+    /**
+      * Gets the current server TPS
+      *
+      * @return current server TPS (1m, 5m, 15m in Paper-Server)
+      */
+    public double[] getTPS();
+
+    /**
+     * Gets the active {@link CommandMap}
+     *
+     * @return the active command map
+     */
+    CommandMap getCommandMap();
+    // Paper end
+    
     /**
      * Get the advancement specified by this key.
      *
@@ -950,4 +990,71 @@ public interface Server extends PluginMessageRecipient {
      */
     @Deprecated
     UnsafeValues getUnsafe();
+
+    // Spigot start
+    public class Spigot
+    {
+        /**
+         * Sends the component to the player
+         *
+         * @param component the components to send
+         */
+        public void broadcast(net.md_5.bungee.api.chat.BaseComponent component) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        /**
+         * Sends an array of components as a single message to the player
+         *
+         * @param components the components to send
+         */
+        public void broadcast(net.md_5.bungee.api.chat.BaseComponent... components) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        /**
+         * Restart the server. If the server administrator has not configured restarting, the server will stop.
+         */
+        public void restart() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
+
+    Spigot spigot();
+    // Spigot end
+
+    // Paper start - allow preventing player name suggestions by default
+    /**
+     * Checks if player names should be suggested when a command returns {@code null} as
+     * their tab completion result.
+     *
+     * @return true if player names should be suggested
+     */
+    boolean suggestPlayerNamesWhenNullTabCompletions();
+
+    /**
+         * Creates a PlayerProfile for the specified uuid, with name as null
+         * @param uuid UUID to create profile for
+         * @return A PlayerProfile object
+         */
+    com.destroystokyo.paper.profile.PlayerProfile createProfile(@Nonnull UUID uuid);
+
+    /**
+     * Creates a PlayerProfile for the specified name, with UUID as null
+     * @param name Name to create profile for
+     * @return A PlayerProfile object
+     */
+    com.destroystokyo.paper.profile.PlayerProfile createProfile(@Nonnull String name);
+
+    /**
+     * Creates a PlayerProfile for the specified name/uuid
+     *
+     * Both UUID and Name can not be null at same time. One must be supplied.
+     *
+     * @param uuid UUID to create profile for
+     * @param name Name to create profile for
+     * @return A PlayerProfile object
+     */
+    com.destroystokyo.paper.profile.PlayerProfile createProfile(@Nullable UUID uuid, @Nullable String name);
+    // Paper end
 }

@@ -1,20 +1,21 @@
 package org.bukkit.entity;
 
-import org.bukkit.Location;
+import org.bukkit.Chunk;
 import org.bukkit.EntityEffect;
+import org.bukkit.Location;
 import org.bukkit.Nameable;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.block.PistonMoveReaction;
+import org.bukkit.command.CommandSender;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.util.Vector;
 
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import org.bukkit.block.PistonMoveReaction;
-import org.bukkit.command.CommandSender;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * Represents a base entity in the world
@@ -478,4 +479,42 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @return reaction
      */
     PistonMoveReaction getPistonMoveReaction();
+
+    // Spigot start
+    public class Spigot extends CommandSender.Spigot
+    {
+        /**
+         * Returns whether this entity is invulnerable.
+         *
+         * @return True if the entity is invulnerable.
+         */
+        public boolean isInvulnerable()
+        {
+            throw new UnsupportedOperationException( "Not supported yet." );
+        }
+    }
+
+    @Override
+    Spigot spigot();
+    // Spigot end
+
+    // Paper start
+    /**
+      * Gets the location where this entity originates from.
+      * <p>
+      * This value can be null if the entity hasn't yet been added to the world.
+      *
+      * @return Location where entity originates or null if not yet added
+      */
+    Location getOrigin();
+    
+    /**
+     * Returns whether this entity was spawned from a mob spawner.
+     *
+     * @return True if entity spawned from a mob spawner
+     */
+    boolean fromMobSpawner();
+
+    Chunk getChunk();
+    // Paper end
 }

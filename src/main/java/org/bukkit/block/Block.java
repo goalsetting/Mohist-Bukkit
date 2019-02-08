@@ -1,13 +1,13 @@
 package org.bukkit.block;
 
-import java.util.Collection;
-
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.Metadatable;
+
+import java.util.Collection;
 
 /**
  * Represents a block. This is a live object, and only one Block may exist for
@@ -135,6 +135,9 @@ public interface Block extends Metadatable {
      */
     int getZ();
 
+    public default long getBlockKey() {
+        return ((long)getX() & 0x7FFFFFF) | (((long)getZ() & 0x7FFFFFF) << 27) | ((long)getY() << 54);
+    }
     /**
      * Gets the Location of the block
      *
@@ -256,6 +259,7 @@ public interface Block extends Metadatable {
      */
     BlockState getState();
 
+    BlockState getState(boolean useSnapshot);
     /**
      * Returns the biome that this block resides in
      *

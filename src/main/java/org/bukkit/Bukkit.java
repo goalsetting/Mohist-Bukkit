@@ -1,5 +1,41 @@
 package org.bukkit;
 
+import com.google.common.collect.ImmutableList;
+import org.bukkit.Warning.WarningState;
+import org.bukkit.advancement.Advancement;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarFlag;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
+import org.bukkit.command.CommandException;
+import org.bukkit.command.CommandMap;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.server.ServerListPingEvent;
+import org.bukkit.generator.ChunkGenerator;
+import org.bukkit.help.HelpMap;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemFactory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Merchant;
+import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.map.MapView;
+import org.bukkit.permissions.Permissible;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.ServicesManager;
+import org.bukkit.plugin.messaging.Messenger;
+import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.util.CachedServerIcon;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
@@ -11,41 +47,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
-
-import org.bukkit.Warning.WarningState;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
-import org.bukkit.command.CommandException;
-import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.server.ServerListPingEvent;
-import org.bukkit.help.HelpMap;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.Merchant;
-import org.bukkit.inventory.Recipe;
-import org.bukkit.map.MapView;
-import org.bukkit.permissions.Permissible;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.ServicesManager;
-import org.bukkit.plugin.messaging.Messenger;
-import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.bukkit.util.CachedServerIcon;
-
-import com.google.common.collect.ImmutableList;
-import org.bukkit.advancement.Advancement;
-import org.bukkit.generator.ChunkGenerator;
-
-import org.bukkit.inventory.ItemFactory;
-import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * Represents the Bukkit core, for version and Server singleton handling
@@ -281,6 +282,26 @@ public final class Bukkit {
         return server.broadcastMessage(message);
     }
 
+    // Paper start
+    /**
+     * Sends the component to all online players.
+     *
+     * @param component the component to send
+     */
+    public static void broadcast(net.md_5.bungee.api.chat.BaseComponent component) {
+        server.broadcast(component);
+    }
+
+    /**
+     *  Sends an array of components as a single message to all online players.
+     *
+     * @param components the components to send
+     */
+    public static void broadcast(net.md_5.bungee.api.chat.BaseComponent... components) {
+        server.broadcast(components);
+    }
+    // Paper end
+    
     /**
      * Gets the name of the update folder. The update folder is used to safely
      * update plugins at the right moment on a plugin load.
@@ -413,6 +434,10 @@ public final class Bukkit {
         return server.getPlayer(id);
     }
 
+    @Nullable
+    public static UUID getPlayerUniqueId(String playerName) {
+        return server.getPlayerUniqueId(playerName);
+    }
     /**
      * Gets the plugin manager for interfacing with plugins.
      *
@@ -572,7 +597,7 @@ public final class Bukkit {
      * Dispatches a command on this server, and executes it if found.
      *
      * @param sender the apparent sender of the command
-     * @param commandLine the command + arguments. Example: <code>test abc
+     * @param commandLine the command arguments. Example: <code>test abc
      *     123</code>
      * @return returns false if no target is found
      * @throws CommandException thrown when the executor for the given command
@@ -1134,6 +1159,16 @@ public final class Bukkit {
         return server.getEntity(uuid);
     }
 
+    // Paper start
+    /**
+      * Gets the current server TPS
+      * @return current server TPS (1m, 5m, 15m in Paper-Server)
+      */
+    public static double[] getTPS() {
+        return server.getTPS();
+    }
+// Paper end
+    
     /**
      * Get the advancement specified by this key.
      *
@@ -1162,4 +1197,60 @@ public final class Bukkit {
     public static UnsafeValues getUnsafe() {
         return server.getUnsafe();
     }
+
+    public static Server.Spigot spigot()
+    {
+        return server.spigot();
+    }
+    // Paper start
+    /**
+      * Gets the active {@link CommandMap}
+      *
+      * @return the active command map
+      */
+    public static CommandMap getCommandMap() {
+        return server.getCommandMap();
+    }
+    
+    /**
+     * Checks if player names should be suggested when a command returns {@code null} as
+     * their tab completion result.
+     *
+     * @return true if player names should be suggested
+     */
+           public static boolean suggestPlayerNamesWhenNullTabCompletions() {
+           return server.suggestPlayerNamesWhenNullTabCompletions();
+       }
+
+    /**
+         * Creates a PlayerProfile for the specified uuid, with name as null
+         * @param uuid UUID to create profile for
+         * @return A PlayerProfile object
+         */
+    public static com.destroystokyo.paper.profile.PlayerProfile createProfile(@Nonnull UUID uuid) {
+        return server.createProfile(uuid);
+    }
+
+    /**
+     * Creates a PlayerProfile for the specified name, with UUID as null
+     * @param name Name to create profile for
+     * @return A PlayerProfile object
+     */
+    public static com.destroystokyo.paper.profile.PlayerProfile createProfile(@Nonnull String name) {
+        return server.createProfile(name);
+    }
+
+    /**
+     * Creates a PlayerProfile for the specified name/uuid
+     *
+     * Both UUID and Name can not be null at same time. One must be supplied.
+     *
+     * @param uuid UUID to create profile for
+     * @param name Name to create profile for
+     * @return A PlayerProfile object
+     */
+    public static com.destroystokyo.paper.profile.PlayerProfile createProfile(@Nullable UUID uuid, @Nullable String name) {
+        return server.createProfile(uuid, name);
+    }
+    // Paper end
 }

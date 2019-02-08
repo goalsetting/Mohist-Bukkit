@@ -1,13 +1,13 @@
 package org.bukkit.plugin;
 
-import java.io.File;
-import java.util.Set;
-
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.permissions.Permission;
+
+import java.io.File;
+import java.util.Set;
 
 /**
  * Handles all plugin management from the Server
@@ -87,6 +87,7 @@ public interface PluginManager {
      */
     public void disablePlugins();
 
+    public void disablePlugin(Plugin plugin, boolean closeClassloader);
     /**
      * Disables and removes all plugins
      */

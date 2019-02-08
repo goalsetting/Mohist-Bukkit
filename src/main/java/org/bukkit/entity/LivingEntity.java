@@ -1,18 +1,19 @@
 package org.bukkit.entity;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attributable;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a living entity, such as a monster or player
@@ -168,6 +169,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * @return killer player, or null if none found
      */
     public Player getKiller();
+
+    public void setKiller(@Nullable Player killer);
 
     /**
      * Adds the given {@link PotionEffect} to the living entity.
@@ -360,4 +363,31 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * @return collision status
      */
     boolean isCollidable();
+    
+    // Paper start
+    /**
+     * Get the number of arrows stuck in this entity
+     * @return Number of arrows stuck
+     */
+    int getArrowsStuck();
+
+    /***
+     * Set the number of arrows stuck in this entity
+     *
+     * @param arrows Number of arrows to stick in this entity
+     */
+    void setArrowsStuck(int arrows);
+
+    int getShieldBlockingDelay();
+
+    void setShieldBlockingDelay(int delay);
+
+    ItemStack getActiveItem();
+
+    int getItemUseRemainingTime();
+
+    int getHandRaisedTime();
+
+    boolean isHandRaised();
+    // Paper end
 }
