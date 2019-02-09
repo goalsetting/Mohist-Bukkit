@@ -57,6 +57,7 @@ public class EntityKnockbackByEntityEvent extends EntityEvent implements Cancell
      * @return the original knockback strength.
      */
     public float getKnockbackStrength() {
+
         return knockbackStrength;
     }
 
@@ -64,6 +65,7 @@ public class EntityKnockbackByEntityEvent extends EntityEvent implements Cancell
      * @return the Entity which hit
      */
     public Entity getHitBy() {
+
         return hitBy;
     }
 
@@ -71,6 +73,7 @@ public class EntityKnockbackByEntityEvent extends EntityEvent implements Cancell
      * @return the acceleration that will be applied
      */
     public Vector getAcceleration() {
+
         return acceleration;
     }
 }

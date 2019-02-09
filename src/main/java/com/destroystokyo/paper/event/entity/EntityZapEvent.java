@@ -58,6 +58,7 @@ public class EntityZapEvent extends EntityEvent implements Cancellable {
     }
 
     public static HandlerList getHandlerList() {
+
         return handlers;
     }
 }

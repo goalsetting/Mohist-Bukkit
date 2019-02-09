@@ -26,6 +26,7 @@ public class EndermanAttackPlayerEvent extends EntityEvent implements Cancellabl
      * @return The enderman considering attacking
      */
     @Override public Enderman getEntity() {
+
         return (Enderman) super.getEntity();
     }
 
@@ -35,16 +36,19 @@ public class EndermanAttackPlayerEvent extends EntityEvent implements Cancellabl
      * @return The player the Enderman is considering attacking
      */
     public Player getPlayer() {
+
         return player;
     }
 
     private static final HandlerList handlers = new HandlerList();
 
     public HandlerList getHandlers() {
+
         return handlers;
     }
 
     public static HandlerList getHandlerList() {
+
         return handlers;
     }
 
@@ -56,6 +60,7 @@ public class EndermanAttackPlayerEvent extends EntityEvent implements Cancellabl
      */
     @Override
     public boolean isCancelled() {
+
         return cancelled;
     }
 
@@ -65,6 +70,7 @@ public class EndermanAttackPlayerEvent extends EntityEvent implements Cancellabl
      */
     @Override
     public void setCancelled(boolean cancel) {
+
         cancelled = cancel;
     }
 }

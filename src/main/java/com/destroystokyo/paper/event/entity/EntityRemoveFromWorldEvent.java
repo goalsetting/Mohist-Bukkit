@@ -10,6 +10,7 @@ import org.bukkit.event.entity.EntityEvent;
 public class EntityRemoveFromWorldEvent extends EntityEvent {
 
     public EntityRemoveFromWorldEvent(Entity entity) {
+
         super(entity);
     }
 

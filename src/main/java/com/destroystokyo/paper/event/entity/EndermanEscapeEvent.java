@@ -15,6 +15,7 @@ public class EndermanEscapeEvent extends EntityEvent implements Cancellable {
 
     @Override
     public Enderman getEntity() {
+
         return (Enderman) super.getEntity();
     }
 
@@ -22,6 +23,7 @@ public class EndermanEscapeEvent extends EntityEvent implements Cancellable {
       * @return The reason the enderman is trying to escape
       */
     public Reason getReason() {
+
         return reason;
     }
 

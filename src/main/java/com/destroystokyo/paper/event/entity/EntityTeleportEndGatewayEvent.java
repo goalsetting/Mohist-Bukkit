@@ -23,6 +23,7 @@ public class EntityTeleportEndGatewayEvent extends EntityTeleportEvent {
       * @return EndGateway used
       */
     public EndGateway getGateway() {
+
         return gateway;
     }
 

@@ -54,6 +54,7 @@ public class ExperienceOrbMergeEvent extends EntityEvent implements Cancellable 
       */
     @Override
     public void setCancelled(boolean cancel) {
+
         cancelled = cancel;
     }
 }

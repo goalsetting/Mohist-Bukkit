@@ -26,6 +26,7 @@ public class EntityPathfindEvent extends EntityEvent implements Cancellable {
       * @return The Entity that is pathfinding.
       */
     public Entity getEntity() {
+
         return entity;
     }
 
@@ -52,7 +53,7 @@ public class EntityPathfindEvent extends EntityEvent implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
-    public HandlerList getHandlers() {
+    public HandlerList getHandlers(){
         return handlers;
     }
 
