@@ -49,6 +49,7 @@ public class IllegalPacketEvent extends PlayerEvent {
     }
 
     public static HandlerList getHandlerList() {
+
         return handlers;
     }
 

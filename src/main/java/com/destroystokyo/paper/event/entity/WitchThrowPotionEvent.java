@@ -19,20 +19,23 @@ public class WitchThrowPotionEvent extends EntityEvent implements Cancellable {
 
     @Override
     public Witch getEntity() {
-         return (Witch) super.getEntity();
+
+        return (Witch) super.getEntity();
      }
 
      /**
       * @return The target of the potion
       */
      public LivingEntity getTarget() {
+
          return target;
      }
 
      /**
       * @return The potion the witch will throw at a player
       */
-     public ItemStack getPotion() {
+     public ItemStack getPotion()
+     {
          return potion;
      }
 
@@ -41,6 +44,7 @@ public class WitchThrowPotionEvent extends EntityEvent implements Cancellable {
       * @param potion The potion
       */
      public void setPotion(ItemStack potion) {
+
          this.potion = potion != null ? potion.clone() : null;
      }
         
@@ -67,6 +71,7 @@ public class WitchThrowPotionEvent extends EntityEvent implements Cancellable {
 
     @Override
     public void setCancelled(boolean cancel) {
+
         cancelled = cancel;
     }
 }

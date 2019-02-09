@@ -31,6 +31,7 @@ public class WitchReadyPotionEvent extends EntityEvent implements Cancellable {
 
     @Override
     public Witch getEntity() {
+
         return (Witch) super.getEntity();
     }
 
@@ -38,6 +39,7 @@ public class WitchReadyPotionEvent extends EntityEvent implements Cancellable {
       * @return the potion the witch is readying to use
       */
     public ItemStack getPotion() {
+
         return potion;
     }
 
@@ -46,16 +48,19 @@ public class WitchReadyPotionEvent extends EntityEvent implements Cancellable {
       * @param potion The potion
       */
     public void setPotion(ItemStack potion) {
+
         this.potion = potion != null ? potion.clone() : null;
     }
 
     private static final HandlerList handlers = new HandlerList();
 
     public HandlerList getHandlers() {
+
         return handlers;
     }
 
     public static HandlerList getHandlerList() {
+
         return handlers;
     }
 
@@ -63,11 +68,13 @@ public class WitchReadyPotionEvent extends EntityEvent implements Cancellable {
 
     @Override
     public boolean isCancelled() {
+
         return cancelled;
     }
 
     @Override
     public void setCancelled(boolean cancel) {
+
         cancelled = cancel;
     }
 }

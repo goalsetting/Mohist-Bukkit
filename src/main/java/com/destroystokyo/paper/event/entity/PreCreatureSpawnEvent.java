@@ -93,6 +93,7 @@ public class PreCreatureSpawnEvent extends Event implements Cancellable {
       */
     @Override
     public void setCancelled(boolean cancel) {
+
         cancelled = cancel;
     }
 }

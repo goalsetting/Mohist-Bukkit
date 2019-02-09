@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerEvent;
  *
  * @deprecated Replaced by {@link org.bukkit.event.player.PlayerLocaleChangeEvent} upstream
  */
-@Deprecated
 public class PlayerLocaleChangeEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private final String oldLocale;

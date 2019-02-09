@@ -57,6 +57,7 @@ public class ProjectileCollideEvent extends EntityEvent implements Cancellable {
 
     @Override
     public void setCancelled(boolean cancel) {
+
         this.cancelled = cancel;
     }
 }

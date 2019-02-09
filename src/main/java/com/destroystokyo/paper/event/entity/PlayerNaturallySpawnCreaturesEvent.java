@@ -55,6 +55,7 @@ public class PlayerNaturallySpawnCreaturesEvent extends PlayerEvent implements C
       */
     @Override
     public void setCancelled(boolean cancel) {
+
         cancelled = cancel;
     }
 }

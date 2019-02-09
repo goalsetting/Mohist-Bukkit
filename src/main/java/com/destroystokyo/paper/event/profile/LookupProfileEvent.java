@@ -30,7 +30,6 @@ public class LookupProfileEvent extends Event {
      * @return The profile that was recently looked up. This profile can be mutated
      * @deprecated will be removed with 1.13, use {@link #getPlayerProfile()}
      */
-    @Deprecated
     @Nonnull
     public GameProfile getProfile() {
         return profile.getGameProfile();

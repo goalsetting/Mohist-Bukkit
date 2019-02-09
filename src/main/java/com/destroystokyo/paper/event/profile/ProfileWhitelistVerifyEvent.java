@@ -46,7 +46,6 @@ public class ProfileWhitelistVerifyEvent extends Event {
      * @return the gameprofile of the player trying to connect
      * @deprecated Will be removed in 1.13, use #{@link #getPlayerProfile()}
      */
-    @Deprecated
     public GameProfile getProfile() {
         return profile.getGameProfile();
     }

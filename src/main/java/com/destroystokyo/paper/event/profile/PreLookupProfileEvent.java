@@ -74,7 +74,6 @@ public class PreLookupProfileEvent extends Event {
      * @return the property map to attach to the new {@link PlayerProfile}
      * @deprecated will be removed with 1.13  Use {@link #getProfileProperties()}
      */
-    @Deprecated
     @Nonnull
     public Multimap<String, Property> getProperties() {
         Multimap<String, Property> props = ArrayListMultimap.create();
@@ -90,7 +89,6 @@ public class PreLookupProfileEvent extends Event {
      * @param properties the properties to set on the new profile
      * @deprecated will be removed with 1.13 Use {@link #setProfileProperties(Set)}
      */
-    @Deprecated
     public void setProperties(Multimap<String, Property> properties) {
         this.properties = new HashSet<>();
         properties.values().forEach(property -> {
@@ -103,7 +101,6 @@ public class PreLookupProfileEvent extends Event {
      * @param properties the properties to add to the existing properties
      * @deprecated will be removed with 1.13 use {@link #addProfileProperties(Set)}
      */
-    @Deprecated
     public void addProperties(Multimap<String, Property> properties) {
         properties.values().forEach(property -> {
                 this.properties.add(new ProfileProperty(property.getName(), property.getValue(), property.getSignature()));

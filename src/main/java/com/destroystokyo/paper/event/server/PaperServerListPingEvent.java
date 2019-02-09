@@ -319,7 +319,6 @@ public class PaperServerListPingEvent extends ServerListPingEvent implements Can
     // TODO: Remove in 1.13
 
     @Override
-    @Deprecated
     public List<String> getSampleText() {
         List<String> sampleText = new ArrayList<>();
         for (PlayerProfile profile : getPlayerSample()) {
@@ -329,7 +328,6 @@ public class PaperServerListPingEvent extends ServerListPingEvent implements Can
     }
 
     @Override
-    @Deprecated
     public void setSampleText(List<String> sample) {
         getPlayerSample().clear();
         for (String name : sample) {

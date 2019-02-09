@@ -37,7 +37,7 @@ import org.bukkit.event.player.PlayerEvent;
      private boolean cancelled = false;
 
      @Override
-    public boolean isCancelled() {
+     public boolean isCancelled() {
          return cancelled;
      }
 
@@ -46,7 +46,7 @@ import org.bukkit.event.player.PlayerEvent;
       * @param cancel true if you wish to cancel this event
       */
      @Override
-    public void setCancelled(boolean cancel) {
+     public void setCancelled(boolean cancel) {
          cancelled = cancel;
      }
 }
