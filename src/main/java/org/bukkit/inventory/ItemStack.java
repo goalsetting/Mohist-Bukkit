@@ -35,7 +35,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @param type item material id
      * @deprecated Magic value
      */
-    @Deprecated
     public ItemStack(final int type) {
         this(type, 1);
     }
@@ -56,7 +55,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @param amount stack size
      * @deprecated Magic value
      */
-    @Deprecated
     public ItemStack(final int type, final int amount) {
         this(type, amount, (short) 0);
     }
@@ -79,7 +77,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @param damage durability / damage
      * @deprecated Magic value
      */
-    @Deprecated
     public ItemStack(final int type, final int amount, final short damage) {
         this.type = type;
         this.amount = amount;
@@ -104,7 +101,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @param data the data value or null
      * @deprecated this method uses an ambiguous data byte object
      */
-    @Deprecated
     public ItemStack(final int type, final int amount, final short damage, final Byte data) {
         this.type = type;
         this.amount = amount;
@@ -122,7 +118,8 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @param data the data value or null
      * @deprecated this method uses an ambiguous data byte object
      */
-    @Deprecated
+
+
     public ItemStack(final Material type, final int amount, final short damage, final Byte data) {
         this(type.getId(), amount, damage, data);
     }
@@ -183,7 +180,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @return Type Id of the items in this stack
      * @deprecated Magic value
      */
-    @Deprecated
+
     public int getTypeId() {
         return type;
     }
@@ -196,7 +193,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @param type New type id to set the items in this stack to
      * @deprecated Magic value
      */
-    @Deprecated
+
     public void setTypeId(int type) {
         this.type = type;
         if (this.meta != null) {

@@ -11,7 +11,6 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
  * Thrown when a player picks an item up from the ground
  * @deprecated {@link EntityPickupItemEvent}
  */
-@Deprecated
 @Warning(false)
 public class PlayerPickupItemEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

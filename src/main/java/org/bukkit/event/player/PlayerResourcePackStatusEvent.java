@@ -13,7 +13,7 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
     private final String hash; // Paper
     private final Status status;
 
-    @Deprecated // Paper
+    // Paper
     public PlayerResourcePackStatusEvent(final Player who, Status resourcePackStatus) {
         super(who);
         this.hash = null; // Paper

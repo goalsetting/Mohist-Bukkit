@@ -19,7 +19,6 @@ import java.util.Set;
  *     causes delays for chat. {@link AsyncPlayerChatEvent} is the encouraged
  *     alternative for thread safe implementations.
  */
-@Deprecated
 @Warning(reason="Listening to this event forces chat to wait for the main thread, delaying chat messages.")
 public class PlayerChatEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

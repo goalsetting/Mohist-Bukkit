@@ -11,7 +11,7 @@ public class Cake extends MaterialData {
      * @param type the raw type id
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Cake(int type) {
         super(type);
     }
@@ -25,7 +25,7 @@ public class Cake extends MaterialData {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Cake(int type, byte data) {
         super(type, data);
     }
@@ -35,7 +35,7 @@ public class Cake extends MaterialData {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Cake(Material type, byte data) {
         super(type, data);
     }

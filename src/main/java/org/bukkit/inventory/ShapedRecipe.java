@@ -19,7 +19,6 @@ public class ShapedRecipe implements Recipe, Keyed {
     private String[] rows;
     private Map<Character, ItemStack> ingredients = new HashMap<Character, ItemStack>();
 
-    @Deprecated
     public ShapedRecipe(ItemStack result) {
         this.key = NamespacedKey.randomKey();
         this.output = new ItemStack(result);
@@ -115,7 +114,6 @@ public class ShapedRecipe implements Recipe, Keyed {
      * @return The changed recipe, so you can chain calls.
      * @deprecated Magic value
      */
-    @Deprecated
     public ShapedRecipe setIngredient(char key, Material ingredient, int raw) {
         Validate.isTrue(ingredients.containsKey(key), "Symbol does not appear in the shape:", key);
 

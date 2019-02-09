@@ -305,7 +305,6 @@ public enum EntityType {
      * @return the entity type's name
      * @deprecated Magic value
      */
-    @Deprecated
     public String getName() {
         return name;
     }
@@ -319,7 +318,6 @@ public enum EntityType {
      * @return the raw type id 
      * @deprecated Magic value
      */
-    @Deprecated
     public short getTypeId() {
         return typeId;
     }
@@ -330,7 +328,6 @@ public enum EntityType {
      * @return the matching entity type or null
      * @deprecated Magic value
      */
-    @Deprecated
     public static EntityType fromName(String name) {
         if (name == null) {
             return null;
@@ -344,7 +341,6 @@ public enum EntityType {
      * @return the matching entity type or null
      * @deprecated Magic value
      */
-    @Deprecated
     public static EntityType fromId(int id) {
         if (id > Short.MAX_VALUE) {
             return null;

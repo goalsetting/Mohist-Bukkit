@@ -15,7 +15,7 @@ public class PlayerAttemptPickupItemEvent extends PlayerEvent implements Cancell
     private boolean flyAtPlayer = true;
     private boolean isCancelled = false;
 
-    @Deprecated // Remove in 1.13
+    // Remove in 1.13
     public PlayerAttemptPickupItemEvent(final Player player, final Item item) {
         this(player, item, 0);
     }

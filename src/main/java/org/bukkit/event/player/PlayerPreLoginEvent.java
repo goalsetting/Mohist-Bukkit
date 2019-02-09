@@ -14,7 +14,6 @@ import java.util.UUID;
  *     AsyncPlayerPreLoginEvent} is preferred to keep the secondary threads
  *     asynchronous.
  */
-@Deprecated
 @Warning(reason="This event causes a login thread to synchronize with the main thread")
 public class PlayerPreLoginEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
@@ -24,7 +23,6 @@ public class PlayerPreLoginEvent extends Event {
     private final InetAddress ipAddress;
     private final UUID uniqueId;
 
-    @Deprecated
     public PlayerPreLoginEvent(final String name, final InetAddress ipAddress) {
         this(name, ipAddress, null);
     }

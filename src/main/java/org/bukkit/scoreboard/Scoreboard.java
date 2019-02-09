@@ -66,7 +66,7 @@ public interface Scoreboard {
      * @deprecated Scoreboards can contain entries that aren't players
      * @see #getScores(String)
      */
-    @Deprecated
+    
     Set<Score> getScores(OfflinePlayer player) throws IllegalArgumentException;
 
     /**
@@ -86,7 +86,7 @@ public interface Scoreboard {
      * @deprecated Scoreboards can contain entries that aren't players
      * @see #resetScores(String)
      */
-    @Deprecated
+    
     void resetScores(OfflinePlayer player) throws IllegalArgumentException;
 
     /**
@@ -106,7 +106,7 @@ public interface Scoreboard {
      * @deprecated Scoreboards can contain entries that aren't players
      * @see #getEntryTeam(String)
      */
-    @Deprecated
+    
     Team getPlayerTeam(OfflinePlayer player) throws IllegalArgumentException;
 
     /**
@@ -151,7 +151,7 @@ public interface Scoreboard {
      * @deprecated Scoreboards can contain entries that aren't players
      * @see #getEntries()
      */
-    @Deprecated
+    
     Set<OfflinePlayer> getPlayers();
 
     /**

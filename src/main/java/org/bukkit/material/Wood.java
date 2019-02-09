@@ -34,7 +34,7 @@ public class Wood extends MaterialData {
      * @param type the raw type id
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Wood(final int type) {
         super(type);
     }
@@ -65,7 +65,7 @@ public class Wood extends MaterialData {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Wood(final int type, final byte data) {
         super(type, data);
     }
@@ -75,7 +75,7 @@ public class Wood extends MaterialData {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Wood(final Material type, final byte data) {
         super(type, data);
     }

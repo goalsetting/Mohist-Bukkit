@@ -72,7 +72,7 @@ public final class MapCursorCollection {
      * @return The newly added MapCursor.
      * @deprecated Magic value
      */
-    @Deprecated
+
     public MapCursor addCursor(int x, int y, byte direction, byte type) {
         return addCursor(x, y, direction, type, true);
     }
@@ -88,7 +88,7 @@ public final class MapCursorCollection {
      * @return The newly added MapCursor.
      * @deprecated Magic value
      */
-    @Deprecated
+
     public MapCursor addCursor(int x, int y, byte direction, byte type, boolean visible) {
         return addCursor(new MapCursor((byte) x, (byte) y, direction, type, visible));
     }

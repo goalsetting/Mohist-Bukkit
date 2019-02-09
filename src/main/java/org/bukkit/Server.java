@@ -327,7 +327,7 @@ public interface Server extends PluginMessageRecipient {
      * @param name the name to look up
      * @return a player if one was found, null otherwise
      */
-    @Deprecated
+    
     public Player getPlayer(String name);
 
     /**
@@ -338,7 +338,7 @@ public interface Server extends PluginMessageRecipient {
      * @param name Exact name of the player to retrieve
      * @return a player object if one was found, null otherwise
      */
-    @Deprecated
+    
     public Player getPlayerExact(String name);
 
     /**
@@ -353,7 +353,7 @@ public interface Server extends PluginMessageRecipient {
      * @param name the (partial) name to match
      * @return list of all possible players
      */
-    @Deprecated
+    
     public List<Player> matchPlayer(String name);
 
     /**
@@ -448,7 +448,7 @@ public interface Server extends PluginMessageRecipient {
      * @return a map view if it exists, or null otherwise
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public MapView getMap(short id);
 
     /**
@@ -611,7 +611,7 @@ public interface Server extends PluginMessageRecipient {
      * @return an offline player
      * @see #getOfflinePlayer(java.util.UUID)
      */
-    @Deprecated
+    
     public OfflinePlayer getOfflinePlayer(String name);
 
     /**
@@ -988,7 +988,7 @@ public interface Server extends PluginMessageRecipient {
      * @see UnsafeValues
      * @return the unsafe values instance
      */
-    @Deprecated
+    
     UnsafeValues getUnsafe();
 
     // Spigot start

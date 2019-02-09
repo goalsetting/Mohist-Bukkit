@@ -30,7 +30,6 @@ public class EntityShootBowEvent extends EntityEvent implements Cancellable {
         return arrowItem;
     }
 
-    @Deprecated
     public EntityShootBowEvent(final LivingEntity shooter, final ItemStack bow, final Projectile projectile, final float force) {
         this(shooter, bow, new ItemStack(org.bukkit.Material.AIR), projectile, force);
     }

@@ -123,7 +123,7 @@ public interface WorldBorder {
      * @return true if the location is within the bounds of this border, false otherwise.
      * @deprecated use {@link #isInside(Location)} for an upstream compatible replacement
      */
-           @Deprecated
+           
     public default boolean isInBounds(Location location) {
                return this.isInside(location);
            }

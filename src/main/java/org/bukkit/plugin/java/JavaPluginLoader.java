@@ -56,7 +56,6 @@ public final class JavaPluginLoader implements PluginLoader {
      * 
      * @param instance the server instance
      */
-    @Deprecated
     public JavaPluginLoader(Server instance) {
         Validate.notNull(instance, "Server cannot be null");
         server = instance;

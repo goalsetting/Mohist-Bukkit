@@ -13,7 +13,7 @@ import java.util.List;
  * may be poorly named, throw exceptions, have misleading parameters, or any
  * other bad programming practice.
  */
-@Deprecated
+
 public interface UnsafeValues {
 
     Material getMaterialFromInternalName(String name);

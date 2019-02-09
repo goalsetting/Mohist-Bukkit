@@ -68,7 +68,7 @@ public enum PotionType {
     /**
      * @deprecated Non-functional
      */
-    @Deprecated
+
     public int getDamageValue() {
         return this.ordinal();
     }
@@ -80,7 +80,7 @@ public enum PotionType {
     /**
      * @deprecated Non-functional
      */
-    @Deprecated
+
     public static PotionType getByDamageValue(int damage) {
         return null;
     }
@@ -88,7 +88,7 @@ public enum PotionType {
     /**
      * @deprecated Misleading
      */
-    @Deprecated
+
     public static PotionType getByEffect(PotionEffectType effectType) {
         if (effectType == null)
             return WATER;

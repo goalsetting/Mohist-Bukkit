@@ -6,7 +6,7 @@ package org.bukkit;
  * code.
  * @deprecated rarely used API that was largely for implementation purposes
  */
-@Deprecated
+
 public interface BlockChangeDelegate {
 
     /**
@@ -23,7 +23,7 @@ public interface BlockChangeDelegate {
      * @return true if the block was set successfully
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public boolean setRawTypeId(int x, int y, int z, int typeId);
 
     /**
@@ -41,7 +41,7 @@ public interface BlockChangeDelegate {
      * @return true if the block was set successfully
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public boolean setRawTypeIdAndData(int x, int y, int z, int typeId, int data);
 
     /**
@@ -56,7 +56,7 @@ public interface BlockChangeDelegate {
      * @return true if the block was set successfully
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public boolean setTypeId(int x, int y, int z, int typeId);
 
     /**
@@ -72,7 +72,7 @@ public interface BlockChangeDelegate {
      * @return true if the block was set successfully
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public boolean setTypeIdAndData(int x, int y, int z, int typeId, int data);
 
     /**
@@ -84,7 +84,7 @@ public interface BlockChangeDelegate {
      * @return The block ID
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public int getTypeId(int x, int y, int z);
 
     /**

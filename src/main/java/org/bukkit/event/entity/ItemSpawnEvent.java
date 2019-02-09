@@ -12,7 +12,6 @@ public class ItemSpawnEvent extends EntitySpawnEvent {
         super(spawnee);
     }
 
-    @Deprecated
     public ItemSpawnEvent(final Item spawnee, final Location loc) {
         this(spawnee);
     }

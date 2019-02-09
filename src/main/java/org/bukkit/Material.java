@@ -583,7 +583,7 @@ public enum Material {
      * @return ID of this material
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public int getId() {
         return id;
     }
@@ -623,7 +623,7 @@ public enum Material {
      * @return New MaterialData with the given data
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public MaterialData getNewData(final byte raw) {
         try {
             return ctor.newInstance(id, raw);
@@ -700,7 +700,7 @@ public enum Material {
      * @return Material if found, or null
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public static Material getMaterial(final int id) {
         if (byId.length > id && id >= 0) {
             return byId[id];

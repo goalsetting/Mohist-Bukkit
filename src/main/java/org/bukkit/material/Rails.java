@@ -16,7 +16,7 @@ public class Rails extends MaterialData {
      * @param type the raw type id
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Rails(final int type) {
         super(type);
     }
@@ -30,7 +30,7 @@ public class Rails extends MaterialData {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Rails(final int type, final byte data) {
         super(type, data);
     }
@@ -40,7 +40,7 @@ public class Rails extends MaterialData {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Rails(final Material type, final byte data) {
         super(type, data);
     }
@@ -120,7 +120,7 @@ public class Rails extends MaterialData {
      * @return the data without the extended part
      * @deprecated Magic value
      */
-    @Deprecated
+    
     protected byte getConvertedData() {
         return getData();
     }

@@ -389,7 +389,7 @@ public final class Bukkit {
      * @param name the name to look up
      * @return a player if one was found, null otherwise
      */
-    @Deprecated
+    
     public static Player getPlayer(String name) {
         return server.getPlayer(name);
     }
@@ -402,7 +402,7 @@ public final class Bukkit {
      * @param name Exact name of the player to retrieve
      * @return a player object if one was found, null otherwise
      */
-    @Deprecated
+    
     public static Player getPlayerExact(String name) {
         return server.getPlayerExact(name);
     }
@@ -419,7 +419,7 @@ public final class Bukkit {
      * @param name the (partial) name to match
      * @return list of all possible players
      */
-    @Deprecated
+    
     public static List<Player> matchPlayer(String name) {
         return server.matchPlayer(name);
     }
@@ -537,7 +537,7 @@ public final class Bukkit {
      * @return a map view if it exists, or null otherwise
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public static MapView getMap(short id) {
         return server.getMap(id);
     }
@@ -742,7 +742,7 @@ public final class Bukkit {
      * @return an offline player
      * @see #getOfflinePlayer(java.util.UUID)
      */
-    @Deprecated
+    
     public static OfflinePlayer getOfflinePlayer(String name) {
         return server.getOfflinePlayer(name);
     }
@@ -1193,7 +1193,7 @@ public final class Bukkit {
      * @see UnsafeValues
      * @return the unsafe values instance
      */
-    @Deprecated
+    
     public static UnsafeValues getUnsafe() {
         return server.getUnsafe();
     }

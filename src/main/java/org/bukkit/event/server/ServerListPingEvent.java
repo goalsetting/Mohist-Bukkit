@@ -153,7 +153,6 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
      * @deprecated Will be replaced in 1.13
      * @param sample the new player list sample
      */
-    @Deprecated
     public void setSampleText(java.util.List<String> sample) {
         this.sample = sample;
     }
@@ -162,7 +161,6 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
      * @deprecated Will be replaced in 1.13
      * @return the player list sample
      */
-    @Deprecated
     public java.util.List<String> getSampleText() {
         return sample;
     }

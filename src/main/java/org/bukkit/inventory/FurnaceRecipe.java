@@ -51,7 +51,6 @@ public class FurnaceRecipe implements Recipe {
      *     CraftBukkit server.)
      * @deprecated Magic value
      */
-    @Deprecated
     public FurnaceRecipe(ItemStack result, Material source, int data) {
         this(result, source, data, 0);
     }
@@ -66,7 +65,6 @@ public class FurnaceRecipe implements Recipe {
      * @param experience The experience given by this recipe
      * @deprecated Magic value
      */
-    @Deprecated
     public FurnaceRecipe(ItemStack result, Material source, int data, float experience) {
         this.output = new ItemStack(result);
         this.ingredient = new ItemStack(source, 1, (short) data);
@@ -102,7 +100,6 @@ public class FurnaceRecipe implements Recipe {
      * @return The changed recipe, so you can chain calls.
      * @deprecated Magic value
      */
-    @Deprecated
     public FurnaceRecipe setInput(Material input, int data) {
         this.ingredient = new ItemStack(input, 1, (short) data);
         return this;

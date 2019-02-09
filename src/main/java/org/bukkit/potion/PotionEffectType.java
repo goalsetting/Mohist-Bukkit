@@ -179,7 +179,6 @@ public abstract class PotionEffectType {
      * @return Unique ID
      * @deprecated Magic value
      */
-    @Deprecated
     public int getId() {
         return id;
     }
@@ -242,7 +241,7 @@ public abstract class PotionEffectType {
      * @return Resulting type, or null if not found.
      * @deprecated Magic value
      */
-    @Deprecated
+
     public static PotionEffectType getById(int id) {
         if (id >= byId.length || id < 0)
             return null;

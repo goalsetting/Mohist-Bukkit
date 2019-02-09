@@ -19,7 +19,6 @@ public class ShapelessRecipe implements Recipe, Keyed {
     private final ItemStack output;
     private final List<ItemStack> ingredients = new ArrayList<ItemStack>();
 
-    @Deprecated
     public ShapelessRecipe(ItemStack result) {
         this.key = NamespacedKey.randomKey();
         this.output = new ItemStack(result);
@@ -72,7 +71,6 @@ public class ShapelessRecipe implements Recipe, Keyed {
      * @return The changed recipe, so you can chain calls.
      * @deprecated Magic value
      */
-    @Deprecated
     public ShapelessRecipe addIngredient(Material ingredient, int rawdata) {
         return addIngredient(1, ingredient, rawdata);
     }
@@ -108,7 +106,6 @@ public class ShapelessRecipe implements Recipe, Keyed {
      * @return The changed recipe, so you can chain calls.
      * @deprecated Magic value
      */
-    @Deprecated
     public ShapelessRecipe addIngredient(int count, Material ingredient, int rawdata) {
         Validate.isTrue(ingredients.size() + count <= 9, "Shapeless recipes cannot have more than 9 ingredients");
 
@@ -183,7 +180,6 @@ public class ShapelessRecipe implements Recipe, Keyed {
      * @return The changed recipe.
      * @deprecated Magic value
      */
-    @Deprecated
     public ShapelessRecipe removeIngredient(Material ingredient, int rawdata) {
         return removeIngredient(1, ingredient, rawdata);
     }
@@ -199,7 +195,7 @@ public class ShapelessRecipe implements Recipe, Keyed {
      * @return The changed recipe.
      * @deprecated Magic value
      */
-    @Deprecated
+
     public ShapelessRecipe removeIngredient(int count, Material ingredient, int rawdata) {
         Iterator<ItemStack> iterator = ingredients.iterator();
         while (count > 0 && iterator.hasNext()) {

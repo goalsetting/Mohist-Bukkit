@@ -23,7 +23,6 @@ public class BlockCanBuildEvent extends BlockEvent {
      *
      * @deprecated Magic value
      */
-    @Deprecated
     protected int material;
 
     /**
@@ -33,7 +32,6 @@ public class BlockCanBuildEvent extends BlockEvent {
      * @param id the id of the block to place
      * @param canBuild whether we can build 
      */
-    @Deprecated
     public BlockCanBuildEvent(final Block block, final int id, final boolean canBuild) {
         super(block);
         buildable = canBuild;
@@ -77,7 +75,6 @@ public class BlockCanBuildEvent extends BlockEvent {
      * @return The Material ID for the Material that we are trying to place
      * @deprecated Magic value
      */
-    @Deprecated
     public int getMaterialId() {
         return material;
     }

@@ -95,7 +95,7 @@ public interface Objective {
      * @deprecated Scoreboards can contain entries that aren't players
      * @see #getScore(String)
      */
-    @Deprecated
+    
     Score getScore(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
 
     /**

@@ -44,7 +44,7 @@ public enum EntityEffect {
      * @deprecated although this effect may trigger other events on non-living
      * entities, it's only supported usage is on living ones.
      */
-    @Deprecated
+    
     DEATH(3, Entity.class),
     // PAIL - SPIGOT-3641 duplicate
     // GOLEM_ATTACK(4, IronGolem.class),
@@ -68,7 +68,7 @@ public enum EntityEffect {
      * @deprecated although this effect may trigger other events on non-living
      * entities, it's only supported usage is on living ones.
      */
-    @Deprecated
+    
     SHEEP_EAT(10, Entity.class),
     /**
      * When an Iron Golem gives a rose.
@@ -164,7 +164,7 @@ public enum EntityEffect {
      * @return The data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public byte getData() {
         return data;
     }
@@ -186,7 +186,7 @@ public enum EntityEffect {
      *     if it doesn't exist
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public static EntityEffect getByData(final byte data) {
         return BY_DATA.get(data);
     }

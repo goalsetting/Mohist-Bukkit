@@ -43,7 +43,7 @@ public final class NamespacedKey {
      * @param key
      * @deprecated should never be used by plugins, for internal use only!!
      */
-    @Deprecated
+    
     public NamespacedKey(String namespace, String key) {
         Preconditions.checkArgument(namespace != null && VALID_NAMESPACE.matcher(namespace).matches(), "namespace");
         Preconditions.checkArgument(key != null && VALID_KEY.matcher(key).matches(), "key");
@@ -115,7 +115,7 @@ public final class NamespacedKey {
      * @return new key
      * @deprecated should never be used by plugins, for internal use only!!
      */
-    @Deprecated
+    
     public static NamespacedKey randomKey() {
         return new NamespacedKey(BUKKIT, UUID.randomUUID().toString());
     }

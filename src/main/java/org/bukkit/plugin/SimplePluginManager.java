@@ -606,7 +606,6 @@ public final class SimplePluginManager implements PluginManager {
         addPermission(perm, true);
     }
 
-    @Deprecated
     public void addPermission(Permission perm, boolean dirty) {
         String name = perm.getName().toLowerCase(java.util.Locale.ENGLISH);
 
@@ -654,7 +653,7 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    @Deprecated
+
     public void dirtyPermissibles() {
         dirtyPermissibles(true);
         dirtyPermissibles(false);

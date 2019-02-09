@@ -325,7 +325,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *     given location
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public int getBlockTypeIdAt(int x, int y, int z);
 
     /**
@@ -337,7 +337,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *     the given location
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public int getBlockTypeIdAt(Location location);
 
     /**
@@ -542,7 +542,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return true if the chunk has unloaded successfully, otherwise false
      * @deprecated it is never safe to remove a chunk in use
      */
-    @Deprecated
+    
     public boolean unloadChunk(int x, int z, boolean save, boolean safe);
 
     /**
@@ -586,7 +586,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * 
      * @deprecated This method is not guaranteed to work suitably across all client implementations.
      */
-    @Deprecated
+    
     public boolean refreshChunk(int x, int z);
 
     /**
@@ -651,7 +651,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return true if the tree was created successfully, otherwise false
      * @deprecated rarely used API that was largely for implementation purposes
      */
-    @Deprecated
+    
     public boolean generateTree(Location loc, TreeType type, BlockChangeDelegate delegate);
 
     /**
@@ -702,7 +702,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return A List of all Entities currently residing in this world that
      *     match the given class/interface
      */
-    @Deprecated
+    
     public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... classes);
 
     /**
@@ -1151,7 +1151,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *     Material} are null or {@link Material} is not a block
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public FallingBlock spawnFallingBlock(Location location, Material material, byte data) throws IllegalArgumentException;
 
     /**
@@ -1167,7 +1167,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @see #spawnFallingBlock(org.bukkit.Location, org.bukkit.Material, byte)
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData) throws IllegalArgumentException;
 
     /**
@@ -1919,7 +1919,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
          * It also throws when the effect requires a material or a material data
          * @deprecated Spigot specific API, use {@link Particle}.
          */
-        @Deprecated
+        
         public void playEffect(Location location, Effect effect)
         {
             throw new UnsupportedOperationException( "Not supported yet." );
@@ -1948,7 +1948,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
          * @param radius the radius around the location
          * @deprecated Spigot specific API, use {@link Particle}.
          */
-        @Deprecated
+        
         public void playEffect(Location location, Effect effect, int id, int data, float offsetX, float offsetY, float offsetZ, float speed, int particleCount, int radius)
         {
             throw new UnsupportedOperationException( "Not supported yet." );
@@ -1993,7 +1993,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
          * @return dimension ID
          * @deprecated Magic value
          */
-        @Deprecated
+        
         public int getId() {
             return id;
         }
@@ -2005,7 +2005,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
          * @return The environment
          * @deprecated Magic value
          */
-        @Deprecated
+        
         public static Environment getEnvironment(int id) {
             return lookup.get(id);
         }

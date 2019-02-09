@@ -155,7 +155,6 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *     create inconsistencies between the Player and the server, and to
      *     make unexpected changes in the behavior of the clicked Inventory.
      */
-    @Deprecated
     public void setCursor(ItemStack stack) {
         getView().setCursor(stack);
     }

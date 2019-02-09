@@ -74,7 +74,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * @param type the raw type id
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Diode(int type) {
         super(type);
     }
@@ -88,7 +88,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Diode(int type, byte data) {
         super(type, data);
     }
@@ -98,7 +98,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Diode(Material type, byte data) {
         super(type, data);
     }

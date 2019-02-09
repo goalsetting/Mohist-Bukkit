@@ -12,7 +12,7 @@ public class Stairs extends MaterialData implements Directional {
      * @param type the raw type id
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Stairs(final int type) {
         super(type);
     }
@@ -26,7 +26,7 @@ public class Stairs extends MaterialData implements Directional {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Stairs(final int type, final byte data) {
         super(type, data);
     }
@@ -36,7 +36,7 @@ public class Stairs extends MaterialData implements Directional {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public Stairs(final Material type, final byte data) {
         super(type, data);
     }

@@ -48,7 +48,7 @@ public enum TreeSpecies {
      * @return A byte containing the data value of this tree species
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public byte getData() {
         return data;
     }
@@ -61,7 +61,7 @@ public enum TreeSpecies {
      *     if it doesn't exist
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public static TreeSpecies getByData(final byte data) {
         return BY_DATA.get(data);
     }

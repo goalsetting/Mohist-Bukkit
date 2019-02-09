@@ -849,7 +849,6 @@ public final class PluginDescriptionFile {
      * @return unused
      * @deprecated unused
      */
-    @Deprecated
     public String getClassLoaderOf() {
         return classLoaderOf;
     }
@@ -1077,7 +1076,7 @@ public final class PluginDescriptionFile {
      * @return internal use
      * @deprecated Internal use
      */
-    @Deprecated
+
     public String getRawName() {
         return rawName;
     }

@@ -46,7 +46,6 @@ public abstract class ChunkGenerator {
          */
         void setBiome(int x, int z, Biome bio);
     }
-    @Deprecated
     /**
      * Shapes the chunk for the given coordinates.
      * <p>
@@ -159,7 +158,6 @@ public abstract class ChunkGenerator {
      *     generator
      * @deprecated Magic value
      */
-    @Deprecated
     public short[][] generateExtBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
         return null; // Default - returns null, which drives call to generateBlockSections()
     }
@@ -217,7 +215,6 @@ public abstract class ChunkGenerator {
      *     generator
      * @deprecated Magic value
      */
-    @Deprecated
     public byte[][] generateBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
         return null; // Default - returns null, which drives call to generate()
     }
@@ -414,7 +411,6 @@ public abstract class ChunkGenerator {
          * @param blockId the block id to set the blocks to
          * @deprecated Uses magic values.
          */
-        @Deprecated
         public void setRegion(int xMin, int yMin, int zMin, int xMax, int yMax, int zMax, int blockId);
         
         /**
@@ -433,7 +429,6 @@ public abstract class ChunkGenerator {
          * @param data the block data to set the blocks to
          * @deprecated Uses magic values.
          */
-        @Deprecated
         public void setRegion(int xMin, int yMin, int zMin, int xMax, int yMax, int zMax, int blockId, int data);
         
         /**
@@ -447,7 +442,6 @@ public abstract class ChunkGenerator {
          * @param blockId the blockId to set the block to
          * @deprecated Uses magic values
          */
-        @Deprecated
         public void setBlock(int x, int y, int z, int blockId);
         
         /**
@@ -462,7 +456,6 @@ public abstract class ChunkGenerator {
          * @param data the block data to set the block to
          * @deprecated Uses magic values
          */
-        @Deprecated
         public void setBlock(int x, int y, int z, int blockId, byte data);
         
         /**
@@ -476,7 +469,6 @@ public abstract class ChunkGenerator {
          * @return the block id or 0 if x, y or z are outside the chunk's bounds
          * @deprecated Uses magic values
          */
-        @Deprecated
         public int getTypeId(int x, int y, int z);
         
         /**
@@ -490,7 +482,6 @@ public abstract class ChunkGenerator {
          * @return the block data value or air if x, y or z are outside the chunk's bounds
          * @deprecated Uses magic values
          */
-        @Deprecated
         public byte getData(int x, int y, int z);
     }
 }

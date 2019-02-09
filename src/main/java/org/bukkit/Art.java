@@ -70,7 +70,7 @@ public enum Art {
      * @return The ID of this painting
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public int getId() {
         return id;
     }
@@ -82,7 +82,7 @@ public enum Art {
      * @return The painting
      * @deprecated Magic value
      */
-    @Deprecated
+    
     public static Art getById(int id) {
         return BY_ID.get(id);
     }

@@ -140,7 +140,7 @@ public interface Team {
      * @throws IllegalArgumentException if this team has been unregistered
      * @deprecated see {@link #getOption(org.bukkit.scoreboard.Team.Option)}
      */
-    @Deprecated
+    
     NameTagVisibility getNameTagVisibility() throws IllegalArgumentException;
 
     /**
@@ -151,7 +151,7 @@ public interface Team {
      * @deprecated see
      * {@link #setOption(org.bukkit.scoreboard.Team.Option, org.bukkit.scoreboard.Team.OptionStatus)}
      */
-    @Deprecated
+    
     void setNameTagVisibility(NameTagVisibility visibility) throws IllegalArgumentException;
 
     /**
@@ -162,7 +162,7 @@ public interface Team {
      * @deprecated Teams can contain entries that aren't players
      * @see #getEntries()
      */
-    @Deprecated
+    
     Set<OfflinePlayer> getPlayers() throws IllegalStateException;
 
     /**
@@ -200,7 +200,7 @@ public interface Team {
      * @deprecated Teams can contain entries that aren't players
      * @see #addEntry(String)
      */
-    @Deprecated
+    
     void addPlayer(OfflinePlayer player) throws IllegalStateException, IllegalArgumentException;
 
     /**
@@ -224,7 +224,7 @@ public interface Team {
      * @deprecated Teams can contain entries that aren't players
      * @see #removeEntry(String)
      */
-    @Deprecated
+    
     boolean removePlayer(OfflinePlayer player) throws IllegalStateException, IllegalArgumentException;
 
     /**
@@ -254,7 +254,7 @@ public interface Team {
      * @deprecated Teams can contain entries that aren't players
      * @see #hasEntry(String)
      */
-    @Deprecated
+    
     boolean hasPlayer(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
     /**
      * Checks to see if the specified entry is a member of this team.

@@ -27,7 +27,6 @@ public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
     * @param sourceY the y of the source block
     * @param sourceZ the z of the source block
     */
-    @Deprecated
     public BlockPhysicsEvent(final Block block, final int changed, final int sourceX, final int sourceY, final int sourceZ) {
         this(block, changed);
         this.sourceX = sourceX;
@@ -51,7 +50,6 @@ public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
      * @param block the block involved in this event
      * @param changed the changed block's type id
      */
-    @Deprecated
     public BlockPhysicsEvent(final Block block, final int changed) {
         super(block);
         this.changed = changed;
@@ -64,7 +62,6 @@ public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
      * @return Changed block's type id
      * @deprecated Magic value
      */
-    @Deprecated
     public int getChangedTypeId() {
         return changed;
     }

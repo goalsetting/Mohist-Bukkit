@@ -12,7 +12,6 @@ import java.util.Collection;
  * Potion Adapter for pre-1.9 data values
  * see @PotionMeta for 1.9+
  */
-@Deprecated
 public class Potion {
     private boolean extended = false;
     private boolean splash = false;
