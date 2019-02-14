@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'org.bukkit'
-version '1.12.2-R0.1-SNAPSHOT'
+version '1.12.2'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
