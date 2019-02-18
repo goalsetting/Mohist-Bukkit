@@ -24,6 +24,8 @@
         package co.aikar.timings;
 
 import co.aikar.timings.TimingHistory.RegionData.RegionId;
+import co.aikar.util.LoadingMap;
+import co.aikar.util.MRUMapCache;
 import com.google.common.base.Function;
 import com.google.common.collect.Sets;
 import org.bukkit.Bukkit;
@@ -76,7 +78,7 @@ public class TimingHistory {
         this.endTime = System.currentTimeMillis() / 1000;
         this.startTime = TimingsManager.historyStart / 1000;
         if (timedTicks % 1200 != 0 || MINUTE_REPORTS.isEmpty()) {
-            this.minuteReports = MINUTE_REPORTS.toArray(new MinuteReport[MINUTE_REPORTS.size()  1]);
+            this.minuteReports = MINUTE_REPORTS.toArray(new MinuteReport[MINUTE_REPORTS.size() + 1]);
             this.minuteReports[this.minuteReports.length - 1] = new MinuteReport();
         } else {
             this.minuteReports = MINUTE_REPORTS.toArray(new MinuteReport[MINUTE_REPORTS.size()]);
@@ -107,7 +109,7 @@ public class TimingHistory {
 
                     for (Entity entity : chunk.getEntities()) {
                         if (entity == null) {
-                            Bukkit.getLogger().warning("Null entity detected in chunk at position x: "  chunk.getX()  ", z: "  chunk.getZ());
+                            Bukkit.getLogger().warning("Null entity detected in chunk at position x: " + chunk.getX() + ", z: " + chunk.getZ());
                             continue;
                         }
 
@@ -116,7 +118,7 @@ public class TimingHistory {
 
                     for (BlockState tileEntity : chunk.getTileEntities()) {
                         if (tileEntity == null) {
-                            Bukkit.getLogger().warning("Null tileentity detected in chunk at position x: "  chunk.getX()  ", z: "  chunk.getZ());
+                            Bukkit.getLogger().warning("Null tileentity detected in chunk at position x: " + chunk.getX() + ", z: " + chunk.getZ());
                             continue;
                         }
 
@@ -210,7 +212,7 @@ public class TimingHistory {
             RegionId(int x, int z) {
                 this.x = x >> 5 << 5;
                 this.z = z >> 5 << 5;
-                this.regionId = ((long) (this.x) << 32)  (this.z >> 5 << 5) - Integer.MIN_VALUE;
+                this.regionId = ((long) (this.x) << 32) + (this.z >> 5 << 5) - Integer.MIN_VALUE;
             }
 
             @Override

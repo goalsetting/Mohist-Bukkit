@@ -64,8 +64,8 @@ public class TimedEventExecutor implements EventExecutor {
 
         final String eventName = eventClass.getSimpleName();
         boolean verbose = "BlockPhysicsEvent".equals(eventName);
-        this.timings = Timings.ofSafe(plugin.getName(), (verbose ? "## " : "")
-                "Event: "  id  " ("  eventName  ")", null);
+        this.timings = Timings.ofSafe(plugin.getName(), (verbose ? "## " : "")+
+                "Event: " + id + " (" + eventName + ")", null);
     }
 
     @Override

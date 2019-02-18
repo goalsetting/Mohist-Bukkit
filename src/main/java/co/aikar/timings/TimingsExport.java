@@ -89,17 +89,17 @@ class TimingsExport extends Thread {
         long now = System.currentTimeMillis();
         final long lastReportDiff = now - lastReport;
         if (lastReportDiff < 60000) {
-            listeners.sendMessage(ChatColor.RED  "Please wait at least 1 minute in between Timings reports. ("  (int)((60000 - lastReportDiff) / 1000)  " seconds)");
+            listeners.sendMessage(ChatColor.RED+  "Please wait at least 1 minute in between Timings reports. ("+  (int)((60000 - lastReportDiff) / 1000)+  " seconds)");
             listeners.done();
             return;
         }
         final long lastStartDiff = now - TimingsManager.timingStart;
         if (lastStartDiff < 180000) {
-            listeners.sendMessage(ChatColor.RED  "Please wait at least 3 minutes before generating a Timings report. Unlike Timings v1, v2 benefits from longer timings and is not as useful with short timings. ("  (int)((180000 - lastStartDiff) / 1000)  " seconds)");
+            listeners.sendMessage(ChatColor.RED + "Please wait at least 3 minutes before generating a Timings report. Unlike Timings v1, v2 benefits from longer timings and is not as useful with short timings. ("+  (int)((180000 - lastStartDiff) / 1000) + " seconds)");
             listeners.done();
             return;
         }
-        listeners.sendMessage(ChatColor.GREEN  "Preparing Timings Report...");
+        listeners.sendMessage(ChatColor.GREEN + "Preparing Timings Report...");
         lastReport = now;
         Map parent = createObject(
                 // Get some basic system details about the server
@@ -139,7 +139,7 @@ class TimingsExport extends Thread {
         Set<EntityType> entityTypeSet = Sets.newHashSet();
 
         int size = HISTORY.size();
-        TimingHistory[] history = new TimingHistory[size  1];
+        TimingHistory[] history = new TimingHistory[size+  1];
         int i = 0;
         for (TimingHistory timingHistory : HISTORY) {
             tileEntityTypeSet.addAll(timingHistory.tileEntityTypeSet);
@@ -238,7 +238,7 @@ class TimingsExport extends Thread {
 
         JSONObject object = new JSONObject();
         for (String key : config.getKeys(false)) {
-            String fullKey = (parentKey != null ? parentKey  "."  key : key);
+            String fullKey = (parentKey != null ? parentKey+  "." + key : key);
             if (fullKey.equals("database") || fullKey.equals("settings.bungeecord-addresses") || TimingsManager.hiddenConfigs.contains(fullKey)) {
                 continue;
             }
@@ -276,7 +276,7 @@ class TimingsExport extends Thread {
             try {
                 hostName = InetAddress.getLocalHost().getHostName();
             } catch(Exception ignored) {}
-            con.setRequestProperty("User-Agent", "Paper/"  Bukkit.getServerName()  "/"  hostName);
+            con.setRequestProperty("User-Agent", "Paper/"+  Bukkit.getServerName() + "/" + hostName);
             con.setRequestMethod("POST");
             con.setInstanceFollowRedirects(false);
 
@@ -291,8 +291,8 @@ class TimingsExport extends Thread {
 
             if (con.getResponseCode() != 302) {
                 listeners.sendMessage(
-                        ChatColor.RED  "Upload Error: "  con.getResponseCode()  ": "  con.getResponseMessage());
-                listeners.sendMessage(ChatColor.RED  "Check your logs for more information");
+                        ChatColor.RED+  "Upload Error: " + con.getResponseCode() + ": " + con.getResponseMessage());
+                listeners.sendMessage(ChatColor.RED+  "Check your logs for more information");
                 if (response != null) {
                     Bukkit.getLogger().log(Level.SEVERE, response);
                 }
@@ -300,13 +300,13 @@ class TimingsExport extends Thread {
             }
 
             timingsURL = con.getHeaderField("Location");
-            listeners.sendMessage(ChatColor.GREEN  "View Timings Report: "  timingsURL);
+            listeners.sendMessage(ChatColor.GREEN + "View Timings Report: " + timingsURL);
 
             if (response != null && !response.isEmpty()) {
-                Bukkit.getLogger().log(Level.INFO, "Timing Response: "  response);
+                Bukkit.getLogger().log(Level.INFO, "Timing Response: " + response);
             }
         } catch (IOException ex) {
-            listeners.sendMessage(ChatColor.RED  "Error uploading timings, check your logs for more information");
+            listeners.sendMessage(ChatColor.RED+  "Error uploading timings, check your logs for more information");
             if (response != null) {
                 Bukkit.getLogger().log(Level.SEVERE, response);
             }
@@ -330,7 +330,7 @@ class TimingsExport extends Thread {
             return bos.toString();
 
         } catch (IOException ex) {
-            listeners.sendMessage(ChatColor.RED  "Error uploading timings, check your logs for more information");
+            listeners.sendMessage(ChatColor.RED + "Error uploading timings, check your logs for more information");
             Bukkit.getLogger().log(Level.WARNING, con.getResponseMessage(), ex);
             return null;
         } finally {

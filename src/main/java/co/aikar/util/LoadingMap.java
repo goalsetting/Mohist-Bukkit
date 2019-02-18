@@ -299,7 +299,7 @@ public class LoadingMap <K, V> extends AbstractMap<K, V> {
                 }
             } catch (NoSuchMethodException e) {
                 throw new IllegalStateException(
-                        valueClass.getName()  " does not have a constructor for "  (keyClass != null ? keyClass.getName() : null));
+                        valueClass.getName() + " does not have a constructor for " + (keyClass != null ? keyClass.getName() : null));
             }
         }
 

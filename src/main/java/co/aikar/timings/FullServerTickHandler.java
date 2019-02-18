@@ -37,13 +37,13 @@ public class FullServerTickHandler extends TimingHandler {
             if (this.avgFreeMemory == -1) {
                 this.avgFreeMemory = freeMemory;
             } else {
-                this.avgFreeMemory = (this.avgFreeMemory * (59 / 60D))  (freeMemory * (1 / 60D));
+                this.avgFreeMemory = (this.avgFreeMemory * (59 / 60D)) + (freeMemory * (1 / 60D));
             }
 
             if (this.avgUsedMemory == -1) {
                 this.avgUsedMemory = usedMemory;
             } else {
-                this.avgUsedMemory = (this.avgUsedMemory * (59 / 60D))  (usedMemory * (1 / 60D));
+                this.avgUsedMemory = (this.avgUsedMemory * (59 / 60D)) + (usedMemory * (1 / 60D));
             }
         }
 

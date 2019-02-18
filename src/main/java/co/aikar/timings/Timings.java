@@ -33,7 +33,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.Queue;
 import java.util.logging.Level;
 
-+@SuppressWarnings({"UnusedDeclaration", "WeakerAccess", "SameParameterValue"})
+@SuppressWarnings({"UnusedDeclaration", "WeakerAccess", "SameParameterValue"})
 public final class Timings {
 
     private static final int MAX_HISTORY_FRAMES = 12;
@@ -219,7 +219,7 @@ public final class Timings {
         Queue<TimingHistory> oldQueue = TimingsManager.HISTORY;
         int frames = (getHistoryLength() / getHistoryInterval());
         if (length > maxLength) {
-            Bukkit.getLogger().log(Level.WARNING, "Timings Length too high. Requested "  length  ", max is "  maxLength  ". To get longer history, you must increase your interval. Set Interval to "  Math.ceil(length / MAX_HISTORY_FRAMES)  " to achieve this length.");
+            Bukkit.getLogger().log(Level.WARNING, "Timings Length too high. Requested "+  length + ", max is "+  maxLength + ". To get longer history, you must increase your interval. Set Interval to " + Math.ceil(length / MAX_HISTORY_FRAMES)  +" to achieve this length.");
         }
         TimingsManager.HISTORY = EvictingQueue.create(frames);
         TimingsManager.HISTORY.addAll(oldQueue);

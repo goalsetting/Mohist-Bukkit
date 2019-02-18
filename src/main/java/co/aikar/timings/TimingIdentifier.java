@@ -23,13 +23,15 @@
  */
         package co.aikar.timings;
 
+import co.aikar.util.LoadingMap;
+
 import java.util.ArrayDeque;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-+/**
+/**
  * <p>Used as a basis for fast HashMap key comparisons for the Timing Map.</p>
  *
  * This class uses interned strings giving us the ability to do an identity check instead of equals() on the strings
@@ -49,7 +51,7 @@ final class TimingIdentifier {
         this.group = group != null ? group: DEFAULT_GROUP.name;
         this.name = name;
         this.groupHandler = groupHandler != null ? groupHandler.getTimingHandler() : null;
-        this.hashCode = (31 * this.group.hashCode())  this.name.hashCode();
+        this.hashCode = (31 * this.group.hashCode())+  this.name.hashCode();
     }
 
     static TimingGroup getGroup(String groupName) {

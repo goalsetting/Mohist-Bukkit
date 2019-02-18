@@ -51,7 +51,7 @@ public class TimingsCommand extends BukkitCommand {
             return true;
         }
         if (args.length < 1) {
-            sender.sendMessage(ChatColor.RED  "Usage: "  usageMessage);
+            sender.sendMessage(ChatColor.RED+  "Usage: "+  usageMessage);
             return true;
         }
         final String arg = args[0];
@@ -82,14 +82,14 @@ public class TimingsCommand extends BukkitCommand {
         } else if ("reset".equalsIgnoreCase(arg)) {
             if (now - lastResetAttempt < 30000) {
                 TimingsManager.reset();
-                sender.sendMessage(ChatColor.RED  "Timings reset. Please wait 5-10 minutes before using /timings report.");
+                sender.sendMessage(ChatColor.RED+  "Timings reset. Please wait 5-10 minutes before using /timings report.");
             } else {
                 lastResetAttempt = now;
-                sender.sendMessage(ChatColor.RED  "WARNING: Timings v2 should not be reset. If you are encountering lag, please wait 3 minutes and then issue a report. The best timings will include 10 minutes, with data before and after your lag period. If you really want to reset, run this command again within 30 seconds.");
+                sender.sendMessage(ChatColor.RED  +"WARNING: Timings v2 should not be reset. If you are encountering lag, please wait 3 minutes and then issue a report. The best timings will include 10 minutes, with data before and after your lag period. If you really want to reset, run this command again within 30 seconds.");
             }
 
         } else if ("cost".equals(arg)) {
-            sender.sendMessage("Timings cost: "  TimingsExport.getCost());
+            sender.sendMessage("Timings cost: " + TimingsExport.getCost());
         } else  if (
                 "paste".equalsIgnoreCase(arg) ||
                         "report".equalsIgnoreCase(arg) ||
@@ -99,7 +99,7 @@ public class TimingsCommand extends BukkitCommand {
         ) {
             Timings.generateReport(sender);
         } else {
-            sender.sendMessage(ChatColor.RED  "Usage: "  usageMessage);
+            sender.sendMessage(ChatColor.RED+  "Usage: " + usageMessage);
         }
         return true;
     }

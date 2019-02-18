@@ -23,6 +23,7 @@
  */
         package co.aikar.timings;
 
+import co.aikar.util.LoadingIntMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.bukkit.Bukkit;
 

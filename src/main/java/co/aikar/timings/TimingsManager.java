@@ -23,6 +23,7 @@
  */
 package co.aikar.timings;
 
+import co.aikar.util.LoadingMap;
 import com.google.common.collect.EvictingQueue;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -156,10 +157,10 @@ public final class TimingsManager {
             plugin = getPluginByClassloader(command.getClass());
         }
         if (plugin == null) {
-            return Timings.ofSafe("Command: "  pluginName  ":"  command.getTimingName());
+            return Timings.ofSafe("Command: "+  pluginName + ":"+  command.getTimingName());
         }
 
-        return Timings.ofSafe(plugin, "Command: "  pluginName  ":"  command.getTimingName());
+        return Timings.ofSafe(plugin, "Command: " + pluginName + ":" + command.getTimingName());
     }
 
     /**
