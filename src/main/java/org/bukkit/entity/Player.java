@@ -1444,6 +1444,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      */
     public String getLocale();
 
+    // Paper start
+    /**
+     * Get whether the player can affect mob spawning
+     *
+     * @return if the player can affect mob spawning
+     */
+    public boolean getAffectsSpawning();
+
+    /**
+     * Set whether the player can affect mob spawning
+     *
+     * @param affects Whether the player can affect mob spawning
+     */
+    public void setAffectsSpawning(boolean affects);
+    // Paper end
+
     /**
      * Update the list of commands sent to the client.
      * <br>
@@ -1539,6 +1555,11 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
         @Override
         public void sendMessage(net.md_5.bungee.api.chat.BaseComponent component) {
             throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public int getPing()
+        {
+            throw new UnsupportedOperationException( "Not supported yet." );
         }
 
         @Override
