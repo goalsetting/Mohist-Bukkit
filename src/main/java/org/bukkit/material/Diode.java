@@ -7,8 +7,8 @@ import org.bukkit.block.BlockFace;
  * Represents a diode/repeater in the on or off state, with a delay and facing
  * in a specific direction.
  *
- * @see Material#DIODE_BLOCK_OFF
- * @see Material#DIODE_BLOCK_ON
+ * @see Material#LEGACY_DIODE_BLOCK_OFF
+ * @see Material#LEGACY_DIODE_BLOCK_ON
  */
 public class Diode extends MaterialData implements Directional, Redstone {
 
@@ -65,18 +65,9 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * @see BlockFace
      */
     public Diode(BlockFace facingDirection, int delay, boolean state) {
-        super(state ? Material.DIODE_BLOCK_ON : Material.DIODE_BLOCK_OFF);
+        super(state ? Material.LEGACY_DIODE_BLOCK_ON : Material.LEGACY_DIODE_BLOCK_OFF);
         setFacingDirection(facingDirection);
         setDelay(delay);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public Diode(int type) {
-        super(type);
     }
 
     public Diode(Material type) {
@@ -84,21 +75,11 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public Diode(int type, byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public Diode(Material type, byte data) {
         super(type, data);
     }
@@ -204,6 +185,6 @@ public class Diode extends MaterialData implements Directional, Redstone {
      */
     @Override
     public boolean isPowered() {
-        return getItemType() == Material.DIODE_BLOCK_ON;
+        return getItemType() == Material.LEGACY_DIODE_BLOCK_ON;
     }
 }

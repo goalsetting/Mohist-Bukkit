@@ -1,15 +1,15 @@
 package org.bukkit.event.inventory;
 
-import org.bukkit.Location;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.inventory.InventoryType.SlotType;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
+import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.plugin.Plugin;
 
 /**
  * This event is called when a player clicks a slot in an inventory.
@@ -47,7 +47,6 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     private static final HandlerList handlers = new HandlerList();
     private final ClickType click;
     private final InventoryAction action;
-    private final Inventory clickedInventory;
     private SlotType slot_type;
     private int whichSlot;
     private int rawSlot;
@@ -58,13 +57,6 @@ public class InventoryClickEvent extends InventoryInteractEvent {
         super(view);
         this.slot_type = type;
         this.rawSlot = slot;
-        if (slot < 0) {
-                this.clickedInventory = null;
-        } else if (view.getTopInventory() != null && slot < view.getTopInventory().getSize()) {
-            this.clickedInventory = view.getTopInventory();
-        } else {
-            this.clickedInventory = view.getBottomInventory();
-        }
         this.whichSlot = view.convertSlot(slot);
         this.click = click;
         this.action = action;
@@ -73,14 +65,6 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     public InventoryClickEvent(InventoryView view, SlotType type, int slot, ClickType click, InventoryAction action, int key) {
         this(view, type, slot, click, action);
         this.hotbarKey = key;
-    }
-
-    /**
-     * Gets the inventory that was clicked, or null if outside of window
-     * @return The clicked inventory
-     */
-    public Inventory getClickedInventory() {
-        return clickedInventory;
     }
 
     /**
@@ -155,6 +139,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *     create inconsistencies between the Player and the server, and to
      *     make unexpected changes in the behavior of the clicked Inventory.
      */
+    @Deprecated
     public void setCursor(ItemStack stack) {
         getView().setCursor(stack);
     }
@@ -170,6 +155,16 @@ public class InventoryClickEvent extends InventoryInteractEvent {
         } else {
             getView().setItem(rawSlot, stack);
         }
+    }
+
+    /**
+     * Gets the inventory corresponding to the clicked slot.
+     *
+     * @see InventoryView#getInventory(int)
+     * @return inventory, or null if clicked outside
+     */
+    public Inventory getClickedInventory() {
+        return getView().getInventory(rawSlot);
     }
 
     /**

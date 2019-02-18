@@ -1,22 +1,27 @@
 package org.bukkit.event.player;
 
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.event.HandlerList;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemStack;
 
 /**
  * Represents an event that is called when a player interacts with an object or
  * air, potentially fired once for each hand. The hand can be determined using
  * {@link #getHand()}.
  * <p>
- * This event will fire as cancelled if the vanilla behavior
- * is to do nothing (e.g interacting with air)
+ * This event will fire as cancelled if the vanilla behavior is to do nothing
+ * (e.g interacting with air). For the purpose of avoiding doubt, this means
+ * that the event will only be in the cancelled state if it is fired as a result
+ * of some prediction made by the server where no subsequent code will run,
+ * rather than when the subsequent interaction activity (e.g. placing a block in
+ * an illegal position ({@link BlockCanBuildEvent}) will fail.
  */
 public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

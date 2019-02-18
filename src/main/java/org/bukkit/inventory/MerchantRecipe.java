@@ -1,7 +1,6 @@
 package org.bukkit.inventory;
 
 import com.google.common.base.Preconditions;
-
 import java.util.ArrayList;
 import java.util.List;
 

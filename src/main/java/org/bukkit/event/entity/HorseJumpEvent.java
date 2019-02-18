@@ -1,8 +1,8 @@
 package org.bukkit.event.entity;
 
-import org.bukkit.entity.AbstractHorse;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.bukkit.entity.AbstractHorse;
 
 /**
  * Called when a horse jumps.
@@ -24,6 +24,7 @@ public class HorseJumpEvent extends EntityEvent implements Cancellable {
     /**
      * @deprecated horse jumping was moved client side.
      */
+    @Deprecated
     public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
@@ -67,6 +68,7 @@ public class HorseJumpEvent extends EntityEvent implements Cancellable {
      * @param power power of the jump
      * @deprecated horse jumping was moved client side.
      */
+    @Deprecated
     public void setPower(float power) {
         this.power = power;
     }

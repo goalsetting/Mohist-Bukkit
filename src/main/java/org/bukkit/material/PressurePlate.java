@@ -7,16 +7,7 @@ import org.bukkit.Material;
  */
 public class PressurePlate extends MaterialData implements PressureSensor {
     public PressurePlate() {
-        super(Material.WOOD_PLATE);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public PressurePlate(int type) {
-        super(type);
+        super(Material.LEGACY_WOOD_PLATE);
     }
 
     public PressurePlate(Material type) {
@@ -24,21 +15,11 @@ public class PressurePlate extends MaterialData implements PressureSensor {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public PressurePlate(int type, byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public PressurePlate(Material type, byte data) {
         super(type, data);
     }

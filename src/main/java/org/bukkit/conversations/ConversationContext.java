@@ -11,9 +11,9 @@ import java.util.Map;
  * invocations.
  */
 public class ConversationContext {
-    private Conversable forWhom;
-    private Map<Object, Object> sessionData;
-    private Plugin plugin;
+    private final Conversable forWhom;
+    private final Map<Object, Object> sessionData;
+    private final Plugin plugin;
 
     /**
      * @param plugin The owning plugin.
@@ -46,13 +46,16 @@ public class ConversationContext {
     }
 
     /**
-     * Gets the entire sessionData map.
+     * Gets the underlying sessionData map.
+     *
+     * May be directly modified to manipulate session data.
+     *
      * @return The full sessionData map.
      */
     public Map<Object, Object> getAllSessionData() {
         return sessionData;
     }
-        
+
     /**
      * Gets session data shared between all {@link Prompt} invocations. Use
      * this as a way to pass data through each Prompt as the conversation

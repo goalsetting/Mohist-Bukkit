@@ -1,10 +1,10 @@
 package org.bukkit.scoreboard;
 
+import java.util.Set;
+
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.potion.PotionEffectType;
-
-import java.util.Set;
 
 /**
  * A team on a scoreboard that has a common display theme and other
@@ -33,7 +33,7 @@ public interface Team {
      * Sets the name displayed to entries for this team
      *
      * @param displayName New display name
-     * @throws IllegalArgumentException if displayName is longer than 32
+     * @throws IllegalArgumentException if displayName is longer than 128
      *     characters.
      * @throws IllegalStateException if this team has been unregistered
      */
@@ -52,7 +52,7 @@ public interface Team {
      *
      * @param prefix New prefix
      * @throws IllegalArgumentException if prefix is null
-     * @throws IllegalArgumentException if prefix is longer than 16
+     * @throws IllegalArgumentException if prefix is longer than 64
      *     characters
      * @throws IllegalStateException if this team has been unregistered
      */
@@ -71,7 +71,7 @@ public interface Team {
      *
      * @param suffix the new suffix for this team.
      * @throws IllegalArgumentException if suffix is null
-     * @throws IllegalArgumentException if suffix is longer than 16
+     * @throws IllegalArgumentException if suffix is longer than 64
      *     characters
      * @throws IllegalStateException if this team has been unregistered
      */
@@ -140,7 +140,7 @@ public interface Team {
      * @throws IllegalArgumentException if this team has been unregistered
      * @deprecated see {@link #getOption(org.bukkit.scoreboard.Team.Option)}
      */
-    
+    @Deprecated
     NameTagVisibility getNameTagVisibility() throws IllegalArgumentException;
 
     /**
@@ -151,7 +151,7 @@ public interface Team {
      * @deprecated see
      * {@link #setOption(org.bukkit.scoreboard.Team.Option, org.bukkit.scoreboard.Team.OptionStatus)}
      */
-    
+    @Deprecated
     void setNameTagVisibility(NameTagVisibility visibility) throws IllegalArgumentException;
 
     /**
@@ -162,7 +162,7 @@ public interface Team {
      * @deprecated Teams can contain entries that aren't players
      * @see #getEntries()
      */
-    
+    @Deprecated
     Set<OfflinePlayer> getPlayers() throws IllegalStateException;
 
     /**
@@ -200,7 +200,7 @@ public interface Team {
      * @deprecated Teams can contain entries that aren't players
      * @see #addEntry(String)
      */
-    
+    @Deprecated
     void addPlayer(OfflinePlayer player) throws IllegalStateException, IllegalArgumentException;
 
     /**
@@ -224,7 +224,7 @@ public interface Team {
      * @deprecated Teams can contain entries that aren't players
      * @see #removeEntry(String)
      */
-    
+    @Deprecated
     boolean removePlayer(OfflinePlayer player) throws IllegalStateException, IllegalArgumentException;
 
     /**
@@ -254,7 +254,7 @@ public interface Team {
      * @deprecated Teams can contain entries that aren't players
      * @see #hasEntry(String)
      */
-    
+    @Deprecated
     boolean hasPlayer(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
     /**
      * Checks to see if the specified entry is a member of this team.

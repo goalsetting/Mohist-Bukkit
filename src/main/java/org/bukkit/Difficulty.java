@@ -1,8 +1,8 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
 import java.util.Map;
+
+import com.google.common.collect.Maps;
 
 /**
  * Represents the various difficulty levels that are available.
@@ -46,7 +46,7 @@ public enum Difficulty {
      * @return An integer value of this difficulty
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public int getValue() {
         return value;
     }
@@ -59,7 +59,7 @@ public enum Difficulty {
      *     it doesn't exist
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public static Difficulty getByValue(final int value) {
         return BY_ID.get(value);
     }

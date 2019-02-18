@@ -1,11 +1,11 @@
 package org.bukkit.event.player;
 
+import java.net.InetAddress;
+import java.util.UUID;
+
 import org.bukkit.Warning;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-
-import java.net.InetAddress;
-import java.util.UUID;
 
 /**
  * Stores details for players attempting to log in
@@ -14,6 +14,7 @@ import java.util.UUID;
  *     AsyncPlayerPreLoginEvent} is preferred to keep the secondary threads
  *     asynchronous.
  */
+@Deprecated
 @Warning(reason="This event causes a login thread to synchronize with the main thread")
 public class PlayerPreLoginEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
@@ -23,6 +24,7 @@ public class PlayerPreLoginEvent extends Event {
     private final InetAddress ipAddress;
     private final UUID uniqueId;
 
+    @Deprecated
     public PlayerPreLoginEvent(final String name, final InetAddress ipAddress) {
         this(name, ipAddress, null);
     }

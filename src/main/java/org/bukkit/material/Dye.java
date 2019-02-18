@@ -8,16 +8,7 @@ import org.bukkit.Material;
  */
 public class Dye extends MaterialData implements Colorable {
     public Dye() {
-        super(Material.INK_SACK);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public Dye(final int type) {
-        super(type);
+        super(Material.LEGACY_INK_SACK);
     }
 
     public Dye(final Material type) {
@@ -25,21 +16,11 @@ public class Dye extends MaterialData implements Colorable {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public Dye(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public Dye(final Material type, final byte data) {
         super(type, data);
     }
@@ -48,7 +29,7 @@ public class Dye extends MaterialData implements Colorable {
      * @param color color of the dye
      */
     public Dye(final DyeColor color) {
-        super(Material.INK_SACK, color.getDyeData());
+        super(Material.LEGACY_INK_SACK, color.getDyeData());
     }
 
     /**

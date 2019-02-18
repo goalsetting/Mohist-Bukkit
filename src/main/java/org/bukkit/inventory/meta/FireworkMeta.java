@@ -1,12 +1,12 @@
 package org.bukkit.inventory.meta;
 
+import java.util.List;
+
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 
-import java.util.List;
-
 /**
- * Represents a {@link Material#FIREWORK} and its effects.
+ * Represents a {@link Material#FIREWORK_ROCKET} and its effects.
  */
 public interface FireworkMeta extends ItemMeta {
 

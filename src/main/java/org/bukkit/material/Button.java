@@ -1,23 +1,14 @@
 package org.bukkit.material;
 
-import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.Material;
 
 /**
  * Represents a button
  */
 public class Button extends SimpleAttachableMaterialData implements Redstone {
     public Button() {
-        super(Material.STONE_BUTTON);
-    }
-
-    /**
-     * @param type the type
-     * @deprecated Magic value
-     */
-    
-    public Button(final int type) {
-        super(type);
+        super(Material.LEGACY_STONE_BUTTON);
     }
 
     public Button(final Material type) {
@@ -25,21 +16,11 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public Button(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public Button(final Material type, final byte data) {
         super(type, data);
     }

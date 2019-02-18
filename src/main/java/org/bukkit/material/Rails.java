@@ -9,16 +9,7 @@ import org.bukkit.block.BlockFace;
 public class Rails extends MaterialData {
 
     public Rails() {
-        super(Material.RAILS);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public Rails(final int type) {
-        super(type);
+        super(Material.LEGACY_RAILS);
     }
 
     public Rails(final Material type) {
@@ -26,21 +17,11 @@ public class Rails extends MaterialData {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public Rails(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public Rails(final Material type, final byte data) {
         super(type, data);
     }
@@ -120,7 +101,7 @@ public class Rails extends MaterialData {
      * @return the data without the extended part
      * @deprecated Magic value
      */
-    
+    @Deprecated
     protected byte getConvertedData() {
         return getData();
     }

@@ -1,6 +1,7 @@
 package org.bukkit.event.entity;
 
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.HandlerList;
@@ -12,7 +13,7 @@ public class ProjectileHitEvent extends EntityEvent {
     private static final HandlerList handlers = new HandlerList();
     private final Entity hitEntity;
     private final Block hitBlock;
-    private final org.bukkit.block.BlockFace hitBlockFace; // Paper
+    private final BlockFace hitFace;
 
     public ProjectileHitEvent(final Projectile projectile) {
         this(projectile, null, null);
@@ -30,11 +31,11 @@ public class ProjectileHitEvent extends EntityEvent {
         this(projectile, hitEntity, hitBlock, null);
     }
 
-    public ProjectileHitEvent(final Projectile projectile, Entity hitEntity, Block hitBlock, org.bukkit.block.BlockFace hitBlockFace) {
+    public ProjectileHitEvent(final Projectile projectile, Entity hitEntity, Block hitBlock, BlockFace hitFace) {
         super(projectile);
         this.hitEntity = hitEntity;
         this.hitBlock = hitBlock;
-        this.hitBlockFace = hitBlockFace; // Paper
+        this.hitFace = hitFace;
     }
 
     @Override
@@ -51,8 +52,14 @@ public class ProjectileHitEvent extends EntityEvent {
         return hitBlock;
     }
 
-    public org.bukkit.block.BlockFace getHitBlockFace() {
-        return hitBlockFace;
+    /**
+     * Gets the block face that was hit, if it was a block that was hit and the
+     * face was provided in the vent.
+     *
+     * @return hit face or else null
+     */
+    public BlockFace getHitBlockFace() {
+        return hitFace;
     }
 
     /**

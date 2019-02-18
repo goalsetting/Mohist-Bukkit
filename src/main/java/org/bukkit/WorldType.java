@@ -1,7 +1,6 @@
 package org.bukkit;
 
 import com.google.common.collect.Maps;
-
 import java.util.Map;
 
 /**
@@ -13,7 +12,8 @@ public enum WorldType {
     VERSION_1_1("DEFAULT_1_1"),
     LARGE_BIOMES("LARGEBIOMES"),
     AMPLIFIED("AMPLIFIED"),
-    CUSTOMIZED("CUSTOMIZED");
+    CUSTOMIZED("CUSTOMIZED"),
+    BUFFET("BUFFET");
 
     private final static Map<String, WorldType> BY_NAME = Maps.newHashMap();
     private final String name;

@@ -1,13 +1,12 @@
 package org.bukkit.entity;
 
+import java.util.List;
 import org.bukkit.Color;
 import org.bukkit.Particle;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
-
-import java.util.List;
 
 /**
  * Represents an area effect cloud which will imbue a potion effect onto
@@ -132,6 +131,15 @@ public interface AreaEffectCloud extends Entity {
      * @param particle the new particle type
      */
     void setParticle(Particle particle);
+
+    /**
+     * Sets the particle which this cloud will be composed of
+     *
+     * @param particle the new particle type
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    <T> void setParticle(Particle particle, T data);
 
     /**
      * Sets the underlying potion data

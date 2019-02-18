@@ -1,24 +1,26 @@
 package org.bukkit.entity;
 
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.attribute.Attributable;
-import org.bukkit.block.Block;
-import org.bukkit.inventory.EntityEquipment;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.projectiles.ProjectileSource;
-
-import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.bukkit.FluidCollisionMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.attribute.Attributable;
+import org.bukkit.block.Block;
+import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
+
 /**
  * Represents a living entity, such as a monster or player
  */
-public interface LivingEntity extends Attributable, Entity, Damageable, ProjectileSource {
+public interface LivingEntity extends Attributable, Damageable, ProjectileSource {
 
     /**
      * Gets the height of the living entity's eyes above its Location.
@@ -47,7 +49,7 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * Gets all blocks along the living entity's line of sight.
      * <p>
      * This list contains all blocks from the living entity's eye position to
-     * target inclusive.
+     * target inclusive. This method considers all blocks as 1x1x1 in size.
      *
      * @param transparent HashSet containing all transparent block Materials (set to
      *     null for only air)
@@ -60,6 +62,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
 
     /**
      * Gets the block that the living entity has targeted.
+     * <p>
+     * This method considers all blocks as 1x1x1 in size. To take exact block
+     * collision shapes into account, see {@link #getTargetBlockExact(int,
+     * FluidCollisionMode)}.
      *
      * @param transparent HashSet containing all transparent block Materials (set to
      *     null for only air)
@@ -72,7 +78,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     /**
      * Gets the last two blocks along the living entity's line of sight.
      * <p>
-     * The target block will be the last block in the list.
+     * The target block will be the last block in the list. This method
+     * considers all blocks as 1x1x1 in size.
      *
      * @param transparent HashSet containing all transparent block Materials (set to
      *     null for only air)
@@ -82,6 +89,68 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      *     line of sight
      */
     public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance);
+
+    /**
+     * Gets the block that the living entity has targeted.
+     * <p>
+     * This takes the blocks' precise collision shapes into account. Fluids are
+     * ignored.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param maxDistance the maximum distance to scan
+     * @return block that the living entity has targeted
+     * @see #getTargetBlockExact(int, org.bukkit.FluidCollisionMode)
+     */
+    public Block getTargetBlockExact(int maxDistance);
+
+    /**
+     * Gets the block that the living entity has targeted.
+     * <p>
+     * This takes the blocks' precise collision shapes into account.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param maxDistance the maximum distance to scan
+     * @param fluidCollisionMode the fluid collision mode
+     * @return block that the living entity has targeted
+     * @see #rayTraceBlocks(double, FluidCollisionMode)
+     */
+    public Block getTargetBlockExact(int maxDistance, FluidCollisionMode fluidCollisionMode);
+
+    /**
+     * Performs a ray trace that provides information on the targeted block.
+     * <p>
+     * This takes the blocks' precise collision shapes into account. Fluids are
+     * ignored.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param maxDistance the maximum distance to scan
+     * @return information on the targeted block, or <code>null</code> if there
+     *     is no targeted block in range
+     * @see #rayTraceBlocks(double, FluidCollisionMode)
+     */
+    public RayTraceResult rayTraceBlocks(double maxDistance);
+
+    /**
+     * Performs a ray trace that provides information on the targeted block.
+     * <p>
+     * This takes the blocks' precise collision shapes into account.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param maxDistance the maximum distance to scan
+     * @param fluidCollisionMode the fluid collision mode
+     * @return information on the targeted block, or <code>null</code> if there
+     *     is no targeted block in range
+     * @see World#rayTraceBlocks(Location, Vector, double, FluidCollisionMode)
+     */
+    public RayTraceResult rayTraceBlocks(double maxDistance, FluidCollisionMode fluidCollisionMode);
 
     /**
      * Returns the amount of air that the living entity has remaining, in
@@ -169,8 +238,6 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * @return killer player, or null if none found
      */
     public Player getKiller();
-
-    public void setKiller(@Nullable Player killer);
 
     /**
      * Adds the given {@link PotionEffect} to the living entity.
@@ -329,6 +396,29 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public void setGliding(boolean gliding);
 
     /**
+     * Checks to see if an entity is swimming.
+     *
+     * @return True if this entity is swimming.
+     */
+    public boolean isSwimming();
+
+    /**
+     * Makes entity start or stop swimming.
+     *
+     * This may have unexpected results if the entity is not in water.
+     *
+     * @param swimming True if the entity is swimming.
+     */
+    public void setSwimming(boolean swimming);
+
+    /**
+     * Checks to see if an entity is currently using the Riptide enchantment.
+     *
+     * @return True if this entity is currently riptiding.
+     */
+    public boolean isRiptiding();
+
+    /**
      * Sets whether an entity will have AI.
      *
      * @param ai whether the mob will have AI or not.
@@ -363,31 +453,4 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * @return collision status
      */
     boolean isCollidable();
-    
-    // Paper start
-    /**
-     * Get the number of arrows stuck in this entity
-     * @return Number of arrows stuck
-     */
-    int getArrowsStuck();
-
-    /***
-     * Set the number of arrows stuck in this entity
-     *
-     * @param arrows Number of arrows to stick in this entity
-     */
-    void setArrowsStuck(int arrows);
-
-    int getShieldBlockingDelay();
-
-    void setShieldBlockingDelay(int delay);
-
-    ItemStack getActiveItem();
-
-    int getItemUseRemainingTime();
-
-    int getHandRaisedTime();
-
-    boolean isHandRaised();
-    // Paper end
 }

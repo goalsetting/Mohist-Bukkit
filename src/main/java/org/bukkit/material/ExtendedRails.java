@@ -8,27 +8,9 @@ import org.bukkit.block.BlockFace;
  * classes
  */
 public class ExtendedRails extends Rails {
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public ExtendedRails(final int type) {
-        super(type);
-    }
 
     public ExtendedRails(final Material type) {
         super(type);
-    }
-
-    /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public ExtendedRails(final int type, final byte data) {
-        super(type, data);
     }
 
     /**
@@ -36,7 +18,7 @@ public class ExtendedRails extends Rails {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public ExtendedRails(final Material type, final byte data) {
         super(type, data);
     }
@@ -50,7 +32,7 @@ public class ExtendedRails extends Rails {
      *
      * @deprecated Magic value
      */
-    
+    @Deprecated
     @Override
     protected byte getConvertedData() {
         return (byte) (getData() & 0x7);

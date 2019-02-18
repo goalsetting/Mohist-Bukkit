@@ -1,23 +1,14 @@
 package org.bukkit.material;
 
-import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.Material;
 
 /**
  * Represents Ladder data
  */
 public class Ladder extends SimpleAttachableMaterialData {
     public Ladder() {
-        super(Material.LADDER);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public Ladder(final int type) {
-        super(type);
+        super(Material.LEGACY_LADDER);
     }
 
     public Ladder(final Material type) {
@@ -25,21 +16,11 @@ public class Ladder extends SimpleAttachableMaterialData {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public Ladder(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public Ladder(final Material type, final byte data) {
         super(type, data);
     }

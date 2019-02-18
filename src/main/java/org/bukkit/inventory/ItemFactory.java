@@ -122,18 +122,16 @@ public interface ItemFactory {
      */
     Color getDefaultLeatherColor();
 
-    // Paper start
     /**
-     * Minecart updates are converting simple item stacks into more complex NBT oriented Item Stacks.
+     * Apply a material change for an item meta. Do not use under any
+     * circumstances.
      *
-     * Use this method to to ensure any desired data conversions are processed.
-     * The input itemstack will not be the same as the returned itemstack.
-     *
-     * @param item The item to process conversions on
-     * @return A potentially Data Converted ItemStack
+     * @param meta
+     * @param material
+     * @return updated material
+     * @throws IllegalArgumentException
+     * @deprecated for internal use only
      */
-    ItemStack ensureServerConversions(ItemStack item);
-
-    String getI18NDisplayName(ItemStack item);
-    // Paper end
+    @Deprecated
+    Material updateMaterial(final ItemMeta meta, final Material material) throws IllegalArgumentException;
 }

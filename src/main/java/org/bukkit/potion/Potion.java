@@ -1,17 +1,18 @@
 package org.bukkit.potion;
 
+import java.util.Collection;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 
-import java.util.Collection;
-
 /**
  * Potion Adapter for pre-1.9 data values
  * see @PotionMeta for 1.9+
  */
+@Deprecated
 public class Potion {
     private boolean extended = false;
     private boolean splash = false;

@@ -1,8 +1,8 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-
 import java.util.Map;
+
+import com.google.common.collect.Maps;
 
 /**
  * Represents the different types of grass.
@@ -35,7 +35,7 @@ public enum GrassSpecies {
      * @return A byte containing the data value of this grass species
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public byte getData() {
         return data;
     }
@@ -48,7 +48,7 @@ public enum GrassSpecies {
      *     if it doesn't exist
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public static GrassSpecies getByData(final byte data) {
         return BY_DATA.get(data);
     }

@@ -7,16 +7,7 @@ import org.bukkit.Material;
  */
 public class RedstoneWire extends MaterialData implements Redstone {
     public RedstoneWire() {
-        super(Material.REDSTONE_WIRE);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public RedstoneWire(final int type) {
-        super(type);
+        super(Material.LEGACY_REDSTONE_WIRE);
     }
 
     public RedstoneWire(final Material type) {
@@ -24,21 +15,11 @@ public class RedstoneWire extends MaterialData implements Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public RedstoneWire(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public RedstoneWire(final Material type, final byte data) {
         super(type, data);
     }

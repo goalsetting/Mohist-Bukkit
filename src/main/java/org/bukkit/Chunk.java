@@ -23,9 +23,6 @@ public interface Chunk {
      */
     int getZ();
 
-    default long getChunkKey() {
-        return (long) getX() & 0xffffffffL | ((long) getZ() & 0xffffffffL) << 32;
-    }
     /**
      * Gets the world containing this chunk
      *
@@ -109,7 +106,7 @@ public interface Chunk {
      * @return true if the chunk has unloaded successfully, otherwise false
      * @deprecated it is never safe to remove a chunk in use
      */
-    
+    @Deprecated
     boolean unload(boolean save, boolean safe);
 
     /**
@@ -133,4 +130,26 @@ public interface Chunk {
      * @return true if slimes are able to spawn in this chunk
      */
     boolean isSlimeChunk();
+
+    /**
+     * Gets whether the chunk at the specified chunk coordinates is force
+     * loaded.
+     * <p>
+     * A force loaded chunk will not be unloaded due to lack of player activity.
+     *
+     * @return force load status
+     * @see World#isChunkForceLoaded(int, int)
+     */
+    boolean isForceLoaded();
+
+    /**
+     * Sets whether the chunk at the specified chunk coordinates is force
+     * loaded.
+     * <p>
+     * A force loaded chunk will not be unloaded due to lack of player activity.
+     *
+     * @param forced
+     * @see World#setChunkForceLoaded(int, int, boolean)
+     */
+    void setForceLoaded(boolean forced);
 }

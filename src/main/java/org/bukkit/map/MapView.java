@@ -1,8 +1,8 @@
 package org.bukkit.map;
 
-import org.bukkit.World;
-
 import java.util.List;
+import org.bukkit.World;
+import org.bukkit.inventory.meta.MapMeta;
 
 /**
  * Represents a map item.
@@ -57,14 +57,11 @@ public interface MapView {
     }
 
     /**
-     * Get the ID of this map item. Corresponds to the damage value of a map
-     * in an inventory.
+     * Get the ID of this map item for use with {@link MapMeta}.
      *
      * @return The ID of the map.
-     * @deprecated Magic value
      */
-    @Deprecated
-    public short getId();
+    public int getId();
 
     /**
      * Check whether this map is virtual. A map is virtual if its lowermost

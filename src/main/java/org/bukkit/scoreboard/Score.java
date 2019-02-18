@@ -16,7 +16,7 @@ public interface Score {
      * @deprecated Scoreboards can contain entries that aren't players
      * @see #getEntry()
      */
-    
+    @Deprecated
     OfflinePlayer getPlayer();
 
     /**

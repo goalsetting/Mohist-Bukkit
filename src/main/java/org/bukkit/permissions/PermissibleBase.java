@@ -1,8 +1,5 @@
 package org.bukkit.permissions;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -10,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 
 /**
  * Base Permissible for use in any Permissible object via proxy or extension
@@ -69,11 +68,8 @@ public class PermissibleBase implements Permissible {
 
         String name = inName.toLowerCase(java.util.Locale.ENGLISH);
 
-        // Paper start
-        PermissionAttachmentInfo info = permissions.get(name);
-        if (info != null) {
-            return info.getValue();
-            // Paper end
+        if (isPermissionSet(name)) {
+            return permissions.get(name).getValue();
         } else {
             Permission perm = Bukkit.getServer().getPluginManager().getPermission(name);
 
@@ -92,16 +88,13 @@ public class PermissibleBase implements Permissible {
 
         String name = perm.getName().toLowerCase(java.util.Locale.ENGLISH);
 
-        // Paper start
-        PermissionAttachmentInfo info = permissions.get(name);
-        if (info != null) {
-                return info.getValue();
+        if (isPermissionSet(name)) {
+            return permissions.get(name).getValue();
         }
-        // Paper end
         return perm.getDefault().getValue(isOp());
     }
 
-    public synchronized PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
         if (name == null) {
             throw new IllegalArgumentException("Permission name cannot be null");
         } else if (plugin == null) {
@@ -118,7 +111,7 @@ public class PermissibleBase implements Permissible {
         return result;
     }
 
-    public synchronized PermissionAttachment addAttachment(Plugin plugin) {
+    public PermissionAttachment addAttachment(Plugin plugin) {
         if (plugin == null) {
             throw new IllegalArgumentException("Plugin cannot be null");
         } else if (!plugin.isEnabled()) {
@@ -133,7 +126,7 @@ public class PermissibleBase implements Permissible {
         return result;
     }
 
-    public synchronized void removeAttachment(PermissionAttachment attachment) {
+    public void removeAttachment(PermissionAttachment attachment) {
         if (attachment == null) {
             throw new IllegalArgumentException("Attachment cannot be null");
         }
@@ -152,7 +145,7 @@ public class PermissibleBase implements Permissible {
         }
     }
 
-    public synchronized void recalculatePermissions() {
+    public void recalculatePermissions() {
         clearPermissions();
         Set<Permission> defaults = Bukkit.getServer().getPluginManager().getDefaultPermissions(isOp());
         Bukkit.getServer().getPluginManager().subscribeToDefaultPerms(isOp(), parent);
@@ -199,7 +192,7 @@ public class PermissibleBase implements Permissible {
         }
     }
 
-    public synchronized PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
         if (name == null) {
             throw new IllegalArgumentException("Permission name cannot be null");
         } else if (plugin == null) {
@@ -217,7 +210,7 @@ public class PermissibleBase implements Permissible {
         return result;
     }
 
-    public synchronized PermissionAttachment addAttachment(Plugin plugin, int ticks) {
+    public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
         if (plugin == null) {
             throw new IllegalArgumentException("Plugin cannot be null");
         } else if (!plugin.isEnabled()) {
@@ -235,7 +228,7 @@ public class PermissibleBase implements Permissible {
         }
     }
 
-    public synchronized Set<PermissionAttachmentInfo> getEffectivePermissions() {
+    public Set<PermissionAttachmentInfo> getEffectivePermissions() {
         return new HashSet<PermissionAttachmentInfo>(permissions.values());
     }
 

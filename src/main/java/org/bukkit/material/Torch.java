@@ -1,23 +1,14 @@
 package org.bukkit.material;
 
-import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.Material;
 
 /**
  * MaterialData for torches
  */
 public class Torch extends SimpleAttachableMaterialData {
     public Torch() {
-        super(Material.TORCH);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public Torch(final int type) {
-        super(type);
+        super(Material.LEGACY_TORCH);
     }
 
     public Torch(final Material type) {
@@ -25,21 +16,11 @@ public class Torch extends SimpleAttachableMaterialData {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public Torch(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public Torch(final Material type, final byte data) {
         super(type, data);
     }

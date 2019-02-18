@@ -7,16 +7,7 @@ import org.bukkit.Material;
  */
 public class PoweredRail extends ExtendedRails implements Redstone {
     public PoweredRail() {
-        super(Material.POWERED_RAIL);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public PoweredRail(final int type) {
-        super(type);
+        super(Material.LEGACY_POWERED_RAIL);
     }
 
     public PoweredRail(final Material type) {
@@ -24,21 +15,11 @@ public class PoweredRail extends ExtendedRails implements Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public PoweredRail(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public PoweredRail(final Material type, final byte data) {
         super(type, data);
     }

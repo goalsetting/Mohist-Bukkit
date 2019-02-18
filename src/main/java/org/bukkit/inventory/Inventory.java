@@ -1,13 +1,13 @@
 package org.bukkit.inventory;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryType;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Interface to the various inventories. Behavior relating to {@link
@@ -51,7 +51,11 @@ public interface Inventory extends Iterable<ItemStack> {
      * Returns the name of the inventory
      *
      * @return The String with the name of the inventory
+     * @deprecated different instances of the same inventory may have different names;
+     *      it is not clear what this method is meant to return
+     * @see InventoryView#getTitle()
      */
+    @Deprecated
     public String getName();
 
     /**
@@ -159,17 +163,6 @@ public interface Inventory extends Iterable<ItemStack> {
 
     /**
      * Checks if the inventory contains any ItemStacks with the given
-     * materialId
-     *
-     * @param materialId The materialId to check for
-     * @return true if an ItemStack in this inventory contains the materialId
-     * @deprecated Magic value
-     */
-    @Deprecated
-    public boolean contains(int materialId);
-
-    /**
-     * Checks if the inventory contains any ItemStacks with the given
      * material.
      *
      * @param material The material to check for
@@ -190,19 +183,6 @@ public interface Inventory extends Iterable<ItemStack> {
      *     were found
      */
     public boolean contains(ItemStack item);
-
-    /**
-     * Checks if the inventory contains any ItemStacks with the given
-     * materialId, adding to at least the minimum amount specified.
-     *
-     * @param materialId The materialId to check for
-     * @param amount The minimum amount to look for
-     * @return true if this contains any matching ItemStack with the given
-     *     materialId and amount
-     * @deprecated Magic value
-     */
-    @Deprecated
-    public boolean contains(int materialId, int amount);
 
     /**
      * Checks if the inventory contains any ItemStacks with the given
@@ -244,21 +224,6 @@ public interface Inventory extends Iterable<ItemStack> {
 
     /**
      * Returns a HashMap with all slots and ItemStacks in the inventory with
-     * given materialId.
-     * <p>
-     * The HashMap contains entries where, the key is the slot index, and the
-     * value is the ItemStack in that slot. If no matching ItemStack with the
-     * given materialId is found, an empty map is returned.
-     *
-     * @param materialId The materialId to look for
-     * @return A HashMap containing the slot index, ItemStack pairs
-     * @deprecated Magic value
-     */
-    @Deprecated
-    public HashMap<Integer, ? extends ItemStack> all(int materialId);
-
-    /**
-     * Returns a HashMap with all slots and ItemStacks in the inventory with
      * the given Material.
      * <p>
      * The HashMap contains entries where, the key is the slot index, and the
@@ -287,17 +252,6 @@ public interface Inventory extends Iterable<ItemStack> {
 
     /**
      * Finds the first slot in the inventory containing an ItemStack with the
-     * given materialId.
-     *
-     * @param materialId The materialId to look for
-     * @return The slot index of the given materialId or -1 if not found
-     * @deprecated Magic value
-     */
-    @Deprecated
-    public int first(int materialId);
-
-    /**
-     * Finds the first slot in the inventory containing an ItemStack with the
      * given material
      *
      * @param material The material to look for
@@ -322,15 +276,6 @@ public interface Inventory extends Iterable<ItemStack> {
      * @return The first empty Slot found, or -1 if no empty slots.
      */
     public int firstEmpty();
-
-    /**
-     * Removes all stacks in the inventory matching the given materialId.
-     *
-     * @param materialId The material to remove
-     * @deprecated Magic value
-     */
-    @Deprecated
-    public void remove(int materialId);
 
     /**
      * Removes all stacks in the inventory matching the given material.
@@ -379,7 +324,10 @@ public interface Inventory extends Iterable<ItemStack> {
      * Returns the title of this inventory.
      *
      * @return A String with the title.
+     * @deprecated different instances of the same inventory may have different titles
+     * @see InventoryView#getTitle()
      */
+    @Deprecated
     public String getTitle();
 
     /**

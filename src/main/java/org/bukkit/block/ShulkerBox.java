@@ -1,13 +1,13 @@
 package org.bukkit.block;
 
-import com.destroystokyo.paper.loottable.LootableInventory;
 import org.bukkit.DyeColor;
 import org.bukkit.Nameable;
+import org.bukkit.loot.Lootable;
 
 /**
  * Represents a captured state of a ShulkerBox.
  */
-public interface ShulkerBox extends Container, Nameable, LootableInventory { // Paper
+public interface ShulkerBox extends Container, Nameable, Lootable {
 
     /**
      * Get the {@link DyeColor} corresponding to this ShulkerBox

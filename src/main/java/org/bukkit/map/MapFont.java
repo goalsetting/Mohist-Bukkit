@@ -1,8 +1,7 @@
 package org.bukkit.map;
 
-import org.bukkit.ChatColor;
-
 import java.util.HashMap;
+import org.bukkit.ChatColor;
 
 /**
  * Represents a bitmap font drawable to a map.

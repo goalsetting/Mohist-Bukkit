@@ -72,7 +72,7 @@ public final class MapCursorCollection {
      * @return The newly added MapCursor.
      * @deprecated Magic value
      */
-
+    @Deprecated
     public MapCursor addCursor(int x, int y, byte direction, byte type) {
         return addCursor(x, y, direction, type, true);
     }
@@ -88,9 +88,25 @@ public final class MapCursorCollection {
      * @return The newly added MapCursor.
      * @deprecated Magic value
      */
-
+    @Deprecated
     public MapCursor addCursor(int x, int y, byte direction, byte type, boolean visible) {
         return addCursor(new MapCursor((byte) x, (byte) y, direction, type, visible));
     }
 
+    /**
+     * Add a cursor to the collection.
+     *
+     * @param x The x coordinate, from -128 to 127.
+     * @param y The y coordinate, from -128 to 127.
+     * @param direction The facing of the cursor, from 0 to 15.
+     * @param type The type (color/style) of the map cursor.
+     * @param visible Whether the cursor is visible.
+     * @param caption banner caption
+     * @return The newly added MapCursor.
+     * @deprecated Magic value
+     */
+    @Deprecated
+    public MapCursor addCursor(int x, int y, byte direction, byte type, boolean visible, String caption) {
+        return addCursor(new MapCursor((byte) x, (byte) y, direction, type, visible, caption));
+    }
 }

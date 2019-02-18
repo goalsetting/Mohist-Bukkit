@@ -1,12 +1,12 @@
 package org.bukkit.inventory.meta;
 
+import java.util.List;
 import net.md_5.bungee.api.chat.BaseComponent;
+
 import org.bukkit.Material;
 
-import java.util.List;
-
 /**
- * Represents a book ({@link Material#BOOK_AND_QUILL} or {@link
+ * Represents a book ({@link Material#WRITABLE_BOOK} or {@link
  * Material#WRITTEN_BOOK}) that can have a title, an author, and pages.
  */
 public interface BookMeta extends ItemMeta {
@@ -176,8 +176,8 @@ public interface BookMeta extends ItemMeta {
     BookMeta clone();
 
     // Spigot start
-    public class Spigot extends ItemMeta.Spigot
-    {
+    public class Spigot extends ItemMeta.Spigot {
+
         /**
          * Gets the specified page in the book. The given page must exist.
          *

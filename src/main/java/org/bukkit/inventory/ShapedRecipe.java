@@ -1,14 +1,16 @@
 package org.bukkit.inventory;
 
 import com.google.common.base.Preconditions;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang.Validate;
+
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.material.MaterialData;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Represents a shaped (ie normal) crafting recipe.
@@ -17,8 +19,10 @@ public class ShapedRecipe implements Recipe, Keyed {
     private final NamespacedKey key;
     private final ItemStack output;
     private String[] rows;
-    private Map<Character, ItemStack> ingredients = new HashMap<Character, ItemStack>();
+    private Map<Character, RecipeChoice> ingredients = new HashMap<>();
+    private String group = "";
 
+    @Deprecated
     public ShapedRecipe(ItemStack result) {
         this.key = NamespacedKey.randomKey();
         this.output = new ItemStack(result);
@@ -72,7 +76,7 @@ public class ShapedRecipe implements Recipe, Keyed {
         }
 
         // Remove character mappings for characters that no longer exist in the shape
-        HashMap<Character, ItemStack> newIngredients = new HashMap<Character, ItemStack>();
+        HashMap<Character, RecipeChoice> newIngredients = new HashMap<>();
         for (String row : shape) {
             for (Character c : row.toCharArray()) {
                 newIngredients.put(c, ingredients.get(c));
@@ -114,6 +118,7 @@ public class ShapedRecipe implements Recipe, Keyed {
      * @return The changed recipe, so you can chain calls.
      * @deprecated Magic value
      */
+    @Deprecated
     public ShapedRecipe setIngredient(char key, Material ingredient, int raw) {
         Validate.isTrue(ingredients.containsKey(key), "Symbol does not appear in the shape:", key);
 
@@ -122,7 +127,14 @@ public class ShapedRecipe implements Recipe, Keyed {
             raw = Short.MAX_VALUE;
         }
 
-        ingredients.put(key, new ItemStack(ingredient, 1, (short) raw));
+        ingredients.put(key, new RecipeChoice.MaterialChoice(Collections.singletonList(ingredient)));
+        return this;
+    }
+
+    public ShapedRecipe setIngredient(char key, RecipeChoice ingredient) {
+        Validate.isTrue(ingredients.containsKey(key), "Symbol does not appear in the shape:", key);
+
+        ingredients.put(key, ingredient);
         return this;
     }
 
@@ -133,7 +145,19 @@ public class ShapedRecipe implements Recipe, Keyed {
      */
     public Map<Character, ItemStack> getIngredientMap() {
         HashMap<Character, ItemStack> result = new HashMap<Character, ItemStack>();
-        for (Map.Entry<Character, ItemStack> ingredient : ingredients.entrySet()) {
+        for (Map.Entry<Character, RecipeChoice> ingredient : ingredients.entrySet()) {
+            if (ingredient.getValue() == null) {
+                result.put(ingredient.getKey(), null);
+            } else {
+                result.put(ingredient.getKey(), ingredient.getValue().getItemStack().clone());
+            }
+        }
+        return result;
+    }
+
+    public Map<Character, RecipeChoice> getChoiceMap() {
+        Map<Character, RecipeChoice> result = new HashMap<>();
+        for (Map.Entry<Character, RecipeChoice> ingredient : ingredients.entrySet()) {
             if (ingredient.getValue() == null) {
                 result.put(ingredient.getKey(), null);
             } else {
@@ -164,5 +188,27 @@ public class ShapedRecipe implements Recipe, Keyed {
     @Override
     public NamespacedKey getKey() {
         return key;
+    }
+
+    /**
+     * Get the group of this recipe. Recipes with the same group may be grouped
+     * together when displayed in the client.
+     *
+     * @return recipe group. An empty string denotes no group. May not be null.
+     */
+    public String getGroup() {
+        return group;
+    }
+
+    /**
+     * Set the group of this recipe. Recipes with the same group may be grouped
+     * together when displayed in the client.
+     *
+     * @param group recipe group. An empty string denotes no group. May not be
+     * null.
+     */
+    public void setGroup(String group) {
+        Preconditions.checkArgument(group != null, "group");
+        this.group = group;
     }
 }

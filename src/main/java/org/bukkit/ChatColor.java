@@ -1,15 +1,16 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
-import org.apache.commons.lang.Validate;
-
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang.Validate;
+
+import com.google.common.collect.Maps;
 
 /**
  * All supported color values for chat
  */
-public enum ChatColor {
+public enum ChatColor{
     /**
      * Represents black
      */
@@ -254,7 +255,7 @@ public enum ChatColor {
 
     /**
      * Checks if this code is a format code as opposed to a color code.
-     *
+     * 
      * @return whether this ChatColor is a format code
      */
     public boolean isFormat() {
@@ -263,7 +264,7 @@ public enum ChatColor {
 
     /**
      * Checks if this code is a color code as opposed to a format code.
-     *
+     * 
      * @return whether this ChatColor is a color code
      */
     public boolean isColor() {

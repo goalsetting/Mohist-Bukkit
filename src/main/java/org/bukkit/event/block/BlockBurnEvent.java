@@ -15,6 +15,7 @@ public class BlockBurnEvent extends BlockEvent implements Cancellable {
     private boolean cancelled;
     private final Block ignitingBlock;
 
+    @Deprecated
     public BlockBurnEvent(final Block block) {
         this(block, null);
     }

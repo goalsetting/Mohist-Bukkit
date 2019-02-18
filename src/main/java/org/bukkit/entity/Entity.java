@@ -1,21 +1,23 @@
 package org.bukkit.entity;
 
-import org.bukkit.Chunk;
-import org.bukkit.EntityEffect;
 import org.bukkit.Location;
+import org.bukkit.EntityEffect;
 import org.bukkit.Nameable;
 import org.bukkit.Server;
 import org.bukkit.World;
-import org.bukkit.block.PistonMoveReaction;
-import org.bukkit.command.CommandSender;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.material.Directional;
 import org.bukkit.metadata.Metadatable;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import org.bukkit.block.PistonMoveReaction;
+import org.bukkit.command.CommandSender;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * Represents a base entity in the world
@@ -67,6 +69,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @return width of entity
      */
     public double getWidth();
+
+    /**
+     * Gets the entity's current bounding box.
+     * <p>
+     * The returned bounding box reflects the entity's current location and
+     * size.
+     *
+     * @return the entity's current bounding box
+     */
+    public BoundingBox getBoundingBox();
 
     /**
      * Returns true if the entity is supported by a block. This value is a
@@ -189,6 +201,37 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @return Server instance running this Entity
      */
     public Server getServer();
+
+    /**
+     * Returns true if the entity gets persisted.
+     * <p>
+     * By default all entities are persistent. An entity will also not get
+     * persisted, if it is riding an entity that is not persistent.
+     * <p>
+     * The persistent flag on players controls whether or not to save their
+     * playerdata file when they quit. If a player is directly or indirectly
+     * riding a non-persistent entity, the vehicle at the root and all its
+     * passengers won't get persisted.
+     * <p>
+     * <b>This should not be confused with
+     * {@link LivingEntity#setRemoveWhenFarAway(boolean)} which controls
+     * despawning of living entities. </b>
+     *
+     * @return true if this entity is persistent
+     * @deprecated draft API
+     */
+    @Deprecated
+    public boolean isPersistent();
+
+    /**
+     * Sets whether or not the entity gets persisted.
+     *
+     * @param persistent the persistence status
+     * @see #isPersistent()
+     * @deprecated draft API
+     */
+    @Deprecated
+    public void setPersistent(boolean persistent);
 
     /**
      * Gets the primary passenger of a vehicle. For vehicles that could have
@@ -480,14 +523,33 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      */
     PistonMoveReaction getPistonMoveReaction();
 
+    /**
+     * Get the closest cardinal {@link BlockFace} direction an entity is
+     * currently facing.
+     * <br>
+     * This will not return any non-cardinal directions such as
+     * {@link BlockFace#UP} or {@link BlockFace#DOWN}.
+     * <br>
+     * {@link Hanging} entities will override this call and thus their behavior
+     * may be different.
+     *
+     * @return the entity's current cardinal facing.
+     * @see Hanging
+     * @see Directional#getFacing()
+     */
+    BlockFace getFacing();
+
     // Spigot start
     public class Spigot extends CommandSender.Spigot
     {
+
         /**
          * Returns whether this entity is invulnerable.
          *
          * @return True if the entity is invulnerable.
+         * @deprecated {@link Entity#isInvulnerable()}
          */
+        @Deprecated
         public boolean isInvulnerable()
         {
             throw new UnsupportedOperationException( "Not supported yet." );
@@ -500,21 +562,12 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
 
     // Paper start
     /**
-      * Gets the location where this entity originates from.
-      * <p>
-      * This value can be null if the entity hasn't yet been added to the world.
-      *
-      * @return Location where entity originates or null if not yet added
-      */
-    Location getOrigin();
-    
-    /**
-     * Returns whether this entity was spawned from a mob spawner.
+     * Gets the location where this entity originates from.
+     * <p>
+     * This value can be null if the entity hasn't yet been added to the world.
      *
-     * @return True if entity spawned from a mob spawner
+     * @return Location where entity originates or null if not yet added
      */
-    boolean fromMobSpawner();
-
-    Chunk getChunk();
+    Location getOrigin();
     // Paper end
 }

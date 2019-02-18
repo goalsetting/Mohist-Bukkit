@@ -1,9 +1,10 @@
 package org.bukkit;
 
-import com.google.common.collect.Maps;
+import java.util.Map;
+
 import org.bukkit.entity.HumanEntity;
 
-import java.util.Map;
+import com.google.common.collect.Maps;
 
 /**
  * Represents the various type of game modes that {@link HumanEntity}s may
@@ -46,7 +47,7 @@ public enum GameMode {
      * @return An integer value of this gamemode
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public int getValue() {
         return value;
     }
@@ -59,7 +60,7 @@ public enum GameMode {
      *     it doesn't exist
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public static GameMode getByValue(final int value) {
         return BY_ID.get(value);
     }

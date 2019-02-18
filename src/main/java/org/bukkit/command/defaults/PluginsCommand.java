@@ -1,15 +1,13 @@
 package org.bukkit.command.defaults;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class PluginsCommand extends BukkitCommand {
     public PluginsCommand(String name) {
@@ -34,25 +32,19 @@ public class PluginsCommand extends BukkitCommand {
     }
 
     private String getPluginList() {
-        // Paper start
-        TreeMap<String, ChatColor> plugins = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-
-        for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
-            plugins.put(plugin.getDescription().getName(), plugin.isEnabled() ? ChatColor.GREEN : ChatColor.RED);
-        }
-
         StringBuilder pluginList = new StringBuilder();
-        for (Map.Entry<String, ChatColor> entry : plugins.entrySet()) {
+        Plugin[] plugins = Bukkit.getPluginManager().getPlugins();
+
+        for (Plugin plugin : plugins) {
             if (pluginList.length() > 0) {
                 pluginList.append(ChatColor.WHITE);
                 pluginList.append(", ");
             }
 
-            pluginList.append(entry.getValue());
-            pluginList.append(entry.getKey());
+            pluginList.append(plugin.isEnabled() ? ChatColor.GREEN : ChatColor.RED);
+            pluginList.append(plugin.getDescription().getName());
         }
 
-        return "(" + plugins.size() + "): " + pluginList.toString();
-        // Paper end
+        return "(" + plugins.length + "): " + pluginList.toString();
     }
 }

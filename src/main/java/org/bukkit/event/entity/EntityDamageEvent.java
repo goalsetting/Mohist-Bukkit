@@ -1,8 +1,8 @@
 package org.bukkit.event.entity;
 
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
-import com.google.common.collect.ImmutableMap;
+import java.util.EnumMap;
+import java.util.Map;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -10,8 +10,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
-import java.util.EnumMap;
-import java.util.Map;
+import com.google.common.base.Function;
+import com.google.common.base.Functions;
+import com.google.common.collect.ImmutableMap;
 
 /**
  * Stores data for damage events
@@ -205,6 +206,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * removed very soon in a subsequent release. Please see
      * https://www.spigotmc.org/threads/194446/ for more information.
      */
+    @Deprecated
     public enum DamageModifier {
         /**
          * This represents the amount of damage being done, also known as the
@@ -406,7 +408,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         FLY_INTO_WALL,
         /**
-         * Damage caused when an entity steps on {@link Material#MAGMA}.
+         * Damage caused when an entity steps on {@link Material#MAGMA_BLOCK}.
          * <p>
          * Damage: 1
          */
@@ -417,6 +419,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          * <p>
          * Damage: 6
          */
-        CRAMMING
+        CRAMMING,
+        /**
+         * Damage caused when an entity that should be in water is not.
+         * <p>
+         * Damage: 1
+         */
+        DRYOUT
     }
 }

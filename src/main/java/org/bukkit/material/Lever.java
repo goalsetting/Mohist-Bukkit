@@ -1,23 +1,14 @@
 package org.bukkit.material;
 
-import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.Material;
 
 /**
  * Represents a lever
  */
 public class Lever extends SimpleAttachableMaterialData implements Redstone {
     public Lever() {
-        super(Material.LEVER);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public Lever(final int type) {
-        super(type);
+        super(Material.LEGACY_LEVER);
     }
 
     public Lever(final Material type) {
@@ -25,21 +16,11 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public Lever(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public Lever(final Material type, final byte data) {
         super(type, data);
     }

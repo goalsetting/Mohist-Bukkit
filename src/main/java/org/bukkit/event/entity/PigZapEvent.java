@@ -1,21 +1,24 @@
 package org.bukkit.event.entity;
 
-import com.destroystokyo.paper.event.entity.EntityZapEvent;
+import java.util.Collections;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.PigZombie;
 import org.bukkit.event.Cancellable;
+import org.bukkit.event.HandlerList;
 
 /**
  * Stores data for pigs being zapped
  */
-public class PigZapEvent extends EntityZapEvent implements Cancellable {
+public class PigZapEvent extends EntityTransformEvent implements Cancellable {
+    private static final HandlerList handlers = new HandlerList();
     private boolean canceled;
     private final PigZombie pigzombie;
     private final LightningStrike bolt;
 
     public PigZapEvent(final Pig pig, final LightningStrike bolt, final PigZombie pigzombie) {
-        super(pig, bolt, pigzombie);
+        super(pig, Collections.singletonList((Entity) pigzombie), TransformReason.LIGHTNING);
         this.bolt = bolt;
         this.pigzombie = pigzombie;
     }
@@ -47,8 +50,19 @@ public class PigZapEvent extends EntityZapEvent implements Cancellable {
      * not cancelled first.
      *
      * @return resulting entity
+     * @deprecated use {@link EntityTransformEvent#getTransformedEntity()}
      */
+    @Deprecated
     public PigZombie getPigZombie() {
         return pigzombie;
+    }
+
+    @Override
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
     }
 }

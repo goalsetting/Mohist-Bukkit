@@ -1,23 +1,14 @@
 package org.bukkit.material;
 
-import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.Material;
 
 /**
  * MaterialData for signs
  */
 public class Sign extends MaterialData implements Attachable {
     public Sign() {
-        super(Material.SIGN_POST);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public Sign(final int type) {
-        super(type);
+        super(Material.LEGACY_SIGN_POST);
     }
 
     public Sign(final Material type) {
@@ -29,17 +20,7 @@ public class Sign extends MaterialData implements Attachable {
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
-    public Sign(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
+    @Deprecated
     public Sign(final Material type, final byte data) {
         super(type, data);
     }
@@ -51,7 +32,7 @@ public class Sign extends MaterialData implements Attachable {
      *     a block
      */
     public boolean isWallSign() {
-        return getItemType() == Material.WALL_SIGN;
+        return getItemType() == Material.LEGACY_WALL_SIGN;
     }
 
     /**

@@ -1,11 +1,10 @@
 package org.bukkit.event.block;
 
+import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.HandlerList;
-
-import java.util.List;
 
 /**
  * Called when a piston retracts
@@ -26,6 +25,7 @@ public class BlockPistonRetractEvent extends BlockPistonEvent {
      *
      * @return The possible location of the possibly moving block.
      */
+    @Deprecated
     public Location getRetractLocation() {
         return getBlock().getRelative(getDirection(), 2).getLocation();
     }

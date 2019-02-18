@@ -1,10 +1,11 @@
 package org.bukkit.potion;
 
-import org.apache.commons.lang.Validate;
-import org.bukkit.Color;
-
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.commons.lang.Validate;
+import org.bukkit.Color;
 
 /**
  * Represents a type of potion and its effect on an entity.
@@ -147,6 +148,21 @@ public abstract class PotionEffectType {
      */
     public static final PotionEffectType UNLUCK = new PotionEffectTypeWrapper(27);
 
+    /**
+     * Slows entity fall rate.
+     */
+    public static final PotionEffectType SLOW_FALLING = new PotionEffectTypeWrapper(28);
+
+    /**
+     * Effects granted by a nearby conduit. Includes enhanced underwater abilities.
+     */
+    public static final PotionEffectType CONDUIT_POWER = new PotionEffectTypeWrapper(29);
+
+    /**
+     * Squee'ek uh'k kk'kkkk squeek eee'eek.
+     */
+    public static final PotionEffectType DOLPHINS_GRACE = new PotionEffectTypeWrapper(30);
+
     private final int id;
 
     protected PotionEffectType(int id) {
@@ -179,6 +195,7 @@ public abstract class PotionEffectType {
      * @return Unique ID
      * @deprecated Magic value
      */
+    @Deprecated
     public int getId() {
         return id;
     }
@@ -229,7 +246,7 @@ public abstract class PotionEffectType {
         return "PotionEffectType[" + id + ", " + getName() + "]";
     }
 
-    private static final PotionEffectType[] byId = new PotionEffectType[28];
+    private static final PotionEffectType[] byId = new PotionEffectType[31];
     private static final Map<String, PotionEffectType> byName = new HashMap<String, PotionEffectType>();
     // will break on updates.
     private static boolean acceptingNew = true;
@@ -241,7 +258,7 @@ public abstract class PotionEffectType {
      * @return Resulting type, or null if not found.
      * @deprecated Magic value
      */
-
+    @Deprecated
     public static PotionEffectType getById(int id) {
         if (id >= byId.length || id < 0)
             return null;
@@ -287,11 +304,11 @@ public abstract class PotionEffectType {
 
     /**
      * Returns an array of all the registered {@link PotionEffectType}s.
-     * This array is not necessarily in any particular order and may contain null.
+     * This array is not necessarily in any particular order.
      *
      * @return Array of types.
      */
     public static PotionEffectType[] values() {
-        return byId.clone();
+        return Arrays.copyOfRange(byId, 1, byId.length);
     }
 }

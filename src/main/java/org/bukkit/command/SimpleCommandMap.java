@@ -1,19 +1,5 @@
 package org.bukkit.command;
 
-import com.destroystokyo.paper.event.server.ServerExceptionEvent;
-import com.destroystokyo.paper.exception.ServerCommandException;
-import com.destroystokyo.paper.exception.ServerTabCompleteException;
-import org.apache.commons.lang.Validate;
-import org.bukkit.Location;
-import org.bukkit.Server;
-import org.bukkit.command.defaults.BukkitCommand;
-import org.bukkit.command.defaults.HelpCommand;
-import org.bukkit.command.defaults.PluginsCommand;
-import org.bukkit.command.defaults.ReloadCommand;
-import org.bukkit.command.defaults.TimingsCommand;
-import org.bukkit.entity.Player;
-import org.bukkit.util.StringUtil;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,10 +8,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
+
+import org.apache.commons.lang.Validate;
+import org.bukkit.Location;
+import org.bukkit.Server;
+import org.bukkit.command.defaults.*;
+import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
 public class SimpleCommandMap implements CommandMap {
-    private static final Pattern PATTERN_ON_SPACE = Pattern.compile(" ", Pattern.LITERAL);
     protected final Map<String, Command> knownCommands = new HashMap<String, Command>();
     private final Server server;
 
@@ -35,6 +26,7 @@ public class SimpleCommandMap implements CommandMap {
     }
 
     private void setDefaultCommands() {
+        register("bukkit", new VersionCommand("version"));
         register("bukkit", new ReloadCommand("reload"));
         register("bukkit", new PluginsCommand("plugins"));
         register("bukkit", new TimingsCommand("timings"));
@@ -128,7 +120,7 @@ public class SimpleCommandMap implements CommandMap {
      * {@inheritDoc}
      */
     public boolean dispatch(CommandSender sender, String commandLine) throws CommandException {
-        String[] args = PATTERN_ON_SPACE.split(commandLine);
+        String[] args = commandLine.split(" ");
 
         if (args.length == 0) {
             return false;
@@ -142,15 +134,16 @@ public class SimpleCommandMap implements CommandMap {
         }
 
         try {
+            target.timings.startTiming(); // Spigot
             // Note: we don't return the result of target.execute as thats success / failure, we return handled (true) or not handled (false)
             target.execute(sender, sentCommandLabel, Arrays.copyOfRange(args, 1, args.length));
+            target.timings.stopTiming(); // Spigot
         } catch (CommandException ex) {
-            server.getPluginManager().callEvent(new ServerExceptionEvent(new ServerCommandException(ex, target, sender, args))); // Paper
+            target.timings.stopTiming(); // Spigot
             throw ex;
         } catch (Throwable ex) {
-            String msg = "Unhandled exception executing '" + commandLine + "' in " + target;
-            server.getPluginManager().callEvent(new ServerExceptionEvent(new ServerCommandException(ex, target, sender, args))); // Paper
-            throw new CommandException(msg, ex);
+            target.timings.stopTiming(); // Spigot
+            throw new CommandException("Unhandled exception executing '" + commandLine + "' in " + target, ex);
         }
 
         // return true as command was handled
@@ -215,17 +208,15 @@ public class SimpleCommandMap implements CommandMap {
             return null;
         }
 
-        String argLine = cmdLine.substring(spaceIndex + 1, cmdLine.length());
-        String[] args = PATTERN_ON_SPACE.split(argLine, -1);
+        String[] args = cmdLine.substring(spaceIndex + 1, cmdLine.length()).split(" ", -1);
 
         try {
             return target.tabComplete(sender, commandName, args, location);
         } catch (CommandException ex) {
             throw ex;
         } catch (Throwable ex) {
-            String msg = "Unhandled exception executing tab-completer for '" + cmdLine + "' in " + target;
-            server.getPluginManager().callEvent(new ServerExceptionEvent(new ServerTabCompleteException(msg, ex, target, sender, args))); // Paper
-            throw new CommandException(msg, ex); }
+            throw new CommandException("Unhandled exception executing tab-completer for '" + cmdLine + "' in " + target, ex);
+        }
     }
 
     public Collection<Command> getCommands() {

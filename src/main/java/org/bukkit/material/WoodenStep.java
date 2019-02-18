@@ -6,10 +6,10 @@ import org.bukkit.TreeSpecies;
 /**
  * Represents the different types of wooden steps.
  *
- * @see Material#WOOD_STEP
+ * @see Material#LEGACY_WOOD_STEP
  */
 public class WoodenStep extends Wood {
-    protected static final Material DEFAULT_TYPE = Material.WOOD_STEP;
+    protected static final Material DEFAULT_TYPE = Material.LEGACY_WOOD_STEP;
     protected static final boolean DEFAULT_INVERTED = false;
 
     /**
@@ -41,30 +41,11 @@ public class WoodenStep extends Wood {
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated Magic value
-     */
-    
-    public WoodenStep(final int type) {
-        super(type);
-    }
-
-    /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
-     */
-    
-    public WoodenStep(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
      * @deprecated Magic value
      */
-    
+    @Deprecated
     public WoodenStep(final Material type, final byte data) {
         super(type, data);
     }

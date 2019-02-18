@@ -1,8 +1,8 @@
 package org.bukkit.command.defaults;
 
-import org.bukkit.command.Command;
-
 import java.util.List;
+
+import org.bukkit.command.Command;
 
 public abstract class BukkitCommand extends Command {
     protected BukkitCommand(String name) {
